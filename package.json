@@ -1,0 +1,23 @@
+{
+  "name": "createdao",
+  "version": "0.0.1",
+  "description": "DAO Creation Application and governance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoinOutlet/DAO.git"
+  },
+  "author": "Chainbytes LLC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoinOutlet/DAO/issues"
+  },
+  "homepage": "https://github.com/CoinOutlet/DAO#readme",
+  "dependencies": {
+    "truffle": "^3.4.4",
+    "web3": "^0.19.1"
+  }
+}
