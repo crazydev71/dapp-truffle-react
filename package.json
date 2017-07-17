@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/CoinOutlet/DAO/issues"
   },
-  "homepage": "https://github.com/CoinOutlet/DAO#readme",
   "dependencies": {
     "truffle": "^3.4.4",
     "web3": "^0.19.1",
