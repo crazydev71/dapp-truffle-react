@@ -1,2 +1,0 @@
-# DAO
-## DAO with governance
