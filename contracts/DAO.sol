@@ -378,7 +378,7 @@ contract DAO is DAOInterface{
         votingRegister[msg.sender].length = 0;
         blocked[msg.sender] = 0;
     }
-    
+
     function verifyPreSupport(uint _proposalID) {
         Proposal p = proposals[_proposalID];
         if (now < p.votingDeadline - preSupportTime) {
@@ -458,7 +458,7 @@ contract DAO is DAOInterface{
 
             // this call is as generic as any transaction. It sends all gas and
             // can do everything a transaction can do. It can be used to reenter
-            // the DAO. The `p.proposalPassed` variable prevents the call from 
+            // the DAO. The `p.proposalPassed` variable prevents the call from
             // reaching this line again
             if (!p.recipient.call.value(p.amount)(_transactionData))
                 throw;

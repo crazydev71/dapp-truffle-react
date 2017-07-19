@@ -1,0 +1,45 @@
+{
+  "contract_name": "HelloWorld",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "balance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [
+        {
+          "name": "_newValue",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000c57fe5b5b6103e86000555b5b60ad806100236000396000f300606060405263ffffffff60e060020a600035041663b69ef8a88114602a578063b6b55f25146049575bfe5b3415603157fe5b6037606b565b60408051918252519081900360200190f35b3415605057fe5b60376004356071565b60408051918252519081900360200190f35b60005481565b600080548201908190555b9190505600a165627a7a72305820af97869714ed1061e45c11b0aad72fef1141afaa13ed3a8afb91324aeae7c5790029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1500413725314
+}
