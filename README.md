@@ -24,7 +24,7 @@
 
     // Runs Truffle's test suite for smart contract tests.
     truffle test
-    ```
+
     // Runs Mocha & Chai test suite for reducers contract tests (and backend tests in the future).
     npm run test-mocha
     ```

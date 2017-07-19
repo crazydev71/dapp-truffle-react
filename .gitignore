@@ -35,8 +35,8 @@ bower_components
 #build/Release
 
 # Build directories
-build/*
-build_webpack/*
+build/
+build_webpack/
 
 # Dependency directories
 node_modules/
