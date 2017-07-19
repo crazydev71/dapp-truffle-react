@@ -1,8 +1,6 @@
 /* eslint-disable */
 
 //action types
-
-
 const ADDWEB3 = 'ADDWEB3'
 
 //action creators
