@@ -15,8 +15,11 @@ export default function Header() {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                  <LinkContainer to="/dao">
-                    <NavItem>DAO Creation</NavItem>
+                    <LinkContainer to="/app">
+                        <NavItem>Example</NavItem>
+                    </LinkContainer>
+                  <LinkContainer to="/token">
+                    <NavItem>Token</NavItem>
                   </LinkContainer>
                 </Nav>
             </Navbar.Collapse>
