@@ -1,5 +1,7 @@
-/* PAGE */
 
+
+/* PAGE */
+/*
 body,
 .pure-g [class*=pure-u] {
   font-family: 'Open Sans', sans-serif;
@@ -35,7 +37,7 @@ code {
 }
 
 /* NAVBAR */
-
+/*
 .navbar {
   position: fixed;
   padding: 5px;
@@ -66,3 +68,4 @@ code {
   height: 16px;
   margin-right: 10px;
 }
+*/

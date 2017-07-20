@@ -26,7 +26,7 @@ class App extends Component {
       this.setState({
         web3: results.web3
       })
-
+      console.log(results.web3)
       // Instantiate contract once web3 provided.
       this.instantiateContract()
     })
