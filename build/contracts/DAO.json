@@ -28,7 +28,7 @@
           "type": "uint256"
         },
         {
-          "name": "open",
+          "name": "executed",
           "type": "bool"
         },
         {
@@ -36,54 +36,12 @@
           "type": "bool"
         },
         {
+          "name": "numberOfVotes",
+          "type": "uint256"
+        },
+        {
           "name": "proposalHash",
           "type": "bytes32"
-        },
-        {
-          "name": "proposalDeposit",
-          "type": "uint256"
-        },
-        {
-          "name": "newCurator",
-          "type": "bool"
-        },
-        {
-          "name": "preSupport",
-          "type": "bool"
-        },
-        {
-          "name": "yea",
-          "type": "uint256"
-        },
-        {
-          "name": "nay",
-          "type": "uint256"
-        },
-        {
-          "name": "creator",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "address"
-        },
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "votingRegister",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
         }
       ],
       "payable": false,
@@ -93,71 +51,40 @@
       "constant": false,
       "inputs": [
         {
-          "name": "_proposalID",
+          "name": "proposalNumber",
           "type": "uint256"
         },
         {
-          "name": "_transactionData",
+          "name": "transactionBytecode",
           "type": "bytes"
         }
       ],
       "name": "executeProposal",
-      "outputs": [
-        {
-          "name": "_success",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "unblockMe",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "actualBalance",
-      "outputs": [
-        {
-          "name": "_actualBalance",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "unVoteAll",
       "outputs": [],
       "payable": false,
       "type": "function"
     },
     {
       "constant": true,
-      "inputs": [
+      "inputs": [],
+      "name": "sharesTokenAddress",
+      "outputs": [
         {
           "name": "",
           "type": "address"
         }
       ],
-      "name": "allowedRecipients",
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "numProposals",
       "outputs": [
         {
           "name": "",
-          "type": "bool"
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -167,47 +94,111 @@
       "constant": false,
       "inputs": [
         {
-          "name": "_recipient",
+          "name": "sharesAddress",
           "type": "address"
         },
         {
-          "name": "_amount",
+          "name": "minimumSharesToPassAVote",
           "type": "uint256"
         },
         {
-          "name": "_description",
+          "name": "minutesForDebate",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeVotingRules",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "debatingPeriodInMinutes",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minimumQuorum",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "receiveApproval",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "name": "etherAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "JobDescription",
           "type": "string"
         },
         {
-          "name": "_transactionData",
+          "name": "transactionBytecode",
           "type": "bytes"
-        },
-        {
-          "name": "_debatingPeriod",
-          "type": "uint256"
-        },
-        {
-          "name": "_newCurator",
-          "type": "bool"
         }
       ],
       "name": "newProposal",
       "outputs": [
         {
-          "name": "_proposalID",
-          "type": "uint256"
-        }
-      ],
-      "payable": true,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "minQuorumDivisor",
-      "outputs": [
-        {
-          "name": "",
+          "name": "proposalID",
           "type": "uint256"
         }
       ],
@@ -218,205 +209,19 @@
       "constant": false,
       "inputs": [
         {
-          "name": "_newContract",
-          "type": "address"
-        }
-      ],
-      "name": "newContract",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_recipient",
-          "type": "address"
-        },
-        {
-          "name": "_allowed",
-          "type": "bool"
-        }
-      ],
-      "name": "changeAllowedRecipients",
-      "outputs": [
-        {
-          "name": "_success",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "halveMinQuorum",
-      "outputs": [
-        {
-          "name": "_success",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "proposalDeposit",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "numberOfProposals",
-      "outputs": [
-        {
-          "name": "_numberOfProposals",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "lastTimeMinQuorumMet",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_proposalID",
-          "type": "uint256"
-        }
-      ],
-      "name": "unVote",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_proposalID",
-          "type": "uint256"
-        }
-      ],
-      "name": "verifyPreSupport",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_recipient",
-          "type": "address"
-        },
-        {
-          "name": "_amount",
+          "name": "proposalNumber",
           "type": "uint256"
         },
         {
-          "name": "_description",
-          "type": "string"
-        },
-        {
-          "name": "_transactionData",
-          "type": "bytes"
-        },
-        {
-          "name": "_debatingPeriod",
-          "type": "uint64"
-        }
-      ],
-      "name": "newProposal",
-      "outputs": [
-        {
-          "name": "_proposalID",
-          "type": "uint256"
-        }
-      ],
-      "payable": true,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_proposalID",
-          "type": "uint256"
-        },
-        {
-          "name": "_supportsProposal",
+          "name": "supportsProposal",
           "type": "bool"
         }
       ],
       "name": "vote",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_proposalDeposit",
-          "type": "uint256"
-        }
-      ],
-      "name": "changeProposalDeposit",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "blocked",
       "outputs": [
         {
-          "name": "",
+          "name": "voteID",
           "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "curator",
-      "outputs": [
-        {
-          "name": "",
-          "type": "address"
         }
       ],
       "payable": false,
@@ -426,26 +231,26 @@
       "constant": true,
       "inputs": [
         {
-          "name": "_proposalID",
+          "name": "proposalNumber",
           "type": "uint256"
         },
         {
-          "name": "_recipient",
+          "name": "beneficiary",
           "type": "address"
         },
         {
-          "name": "_amount",
+          "name": "etherAmount",
           "type": "uint256"
         },
         {
-          "name": "_transactionData",
+          "name": "transactionBytecode",
           "type": "bytes"
         }
       ],
       "name": "checkProposalCode",
       "outputs": [
         {
-          "name": "_codeChecksOut",
+          "name": "codeChecksOut",
           "type": "bool"
         }
       ],
@@ -453,21 +258,34 @@
       "type": "function"
     },
     {
+      "constant": false,
       "inputs": [
         {
-          "name": "_curator",
-          "type": "address"
-        },
-        {
-          "name": "_proposalDeposit",
-          "type": "uint256"
-        },
-        {
-          "name": "_token",
+          "name": "newOwner",
           "type": "address"
         }
       ],
+      "name": "transferOwnership",
+      "outputs": [],
       "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "sharesAddress",
+          "type": "address"
+        },
+        {
+          "name": "minimumSharesToPassAVote",
+          "type": "uint256"
+        },
+        {
+          "name": "minutesForDebate",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
       "type": "constructor"
     },
     {
@@ -478,7 +296,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": true,
+          "indexed": false,
           "name": "proposalID",
           "type": "uint256"
         },
@@ -505,7 +323,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": true,
+          "indexed": false,
           "name": "proposalID",
           "type": "uint256"
         },
@@ -515,7 +333,7 @@
           "type": "bool"
         },
         {
-          "indexed": true,
+          "indexed": false,
           "name": "voter",
           "type": "address"
         }
@@ -527,19 +345,24 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": true,
+          "indexed": false,
           "name": "proposalID",
           "type": "uint256"
         },
         {
           "indexed": false,
           "name": "result",
-          "type": "bool"
+          "type": "uint256"
         },
         {
           "indexed": false,
           "name": "quorum",
           "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "active",
+          "type": "bool"
         }
       ],
       "name": "ProposalTallied",
@@ -549,22 +372,221 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": true,
-          "name": "_recipient",
+          "indexed": false,
+          "name": "minimumQuorum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "debatingPeriodInMinutes",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "sharesTokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "ChangeOfRules",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "sender",
           "type": "address"
         },
         {
           "indexed": false,
-          "name": "_allowed",
-          "type": "bool"
+          "name": "amount",
+          "type": "uint256"
         }
       ],
-      "name": "AllowedRecipientChanged",
+      "name": "receivedEther",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "receivedTokens",
       "type": "event"
     }
   ],
-  "unlinked_binary": "0x",
-  "networks": {},
+  "unlinked_binary": "0x60606040526040516060806113118339810160409081528151602083015191909201515b5b60008054600160a060020a03191633600160a060020a03161790555b61005883838364010000000061088361006182021704565b5b505050610100565b60005433600160a060020a0390811691161461007d5760006000fd5b60058054600160a060020a031916600160a060020a0385161790558115156100a457600191505b600182905560028190556005546040805184815260208101849052600160a060020a0390921682820152517f68259880819f96f54b67d672fefc666565de06099c91b57a689a42073ba090c99181900360600190a15b5b505050565b6112028061010f6000396000f300606060405236156100a95763ffffffff60e060020a600035041663013cf08b81146100f5578063237e9492146101d357806327ebcf0e1461022c578063400e394914610258578063520910471461027a57806369bd34361461029e5780638160f0b5146102c05780638da5cb5b146102e25780638f4ffcb11461030e578063b1050da51461037c578063c9d27afe1461042e578063eceb294514610458578063f2fde38b146104d1575b6100f35b60408051600160a060020a033316815234602082015281517fa398b89ba344a0b23a0b9de53db298b2a1a868b396c1878b7e9dcbafecd49b13929181900390910190a15b565b005b34156100fd57fe5b6101086004356104ef565b60408051600160a060020a038a1681526020810189905260608101879052851515608082015284151560a082015260c0810184905260e08101839052610100918101828152885460026001821615850260001901909116049282018390529091610120830190899080156101bd5780601f10610192576101008083540402835291602001916101bd565b820191906000526020600020905b8154815290600101906020018083116101a057829003601f168201915b5050995050505050505050505060405180910390f35b34156101db57fe5b60408051602060046024803582810135601f81018590048502860185019096528585526100f3958335959394604494939290920191819084018382808284375094965061055095505050505050565b005b341561023457fe5b61023c61086e565b60408051600160a060020a039092168252519081900360200190f35b341561026057fe5b61026861087d565b60408051918252519081900360200190f35b341561028257fe5b6100f3600160a060020a0360043516602435604435610883565b005b34156102a657fe5b610268610922565b60408051918252519081900360200190f35b34156102c857fe5b610268610928565b60408051918252519081900360200190f35b34156102ea57fe5b61023c61092e565b60408051600160a060020a039092168252519081900360200190f35b341561031657fe5b604080516020600460643581810135601f81018490048402850184019095528484526100f3948235600160a060020a039081169560248035966044359093169594608494929391019190819084018382808284375094965061093d95505050505050565b005b341561038457fe5b604080516020600460443581810135601f8101849004840285018401909552848452610268948235600160a060020a031694602480359560649492939190920191819084018382808284375050604080516020601f89358b01803591820183900483028401830190945280835297999881019791965091820194509250829150840183828082843750949650610aad95505050505050565b60408051918252519081900360200190f35b341561043657fe5b6102686004356024351515610d14565b60408051918252519081900360200190f35b341561046057fe5b604080516020600460643581810135601f81018490048402850184019095528484526104bd9482359460248035600160a060020a0316956044359594608494920191908190840183828082843750949650610ed895505050505050565b604080519115158252519081900360200190f35b34156104d957fe5b6100f3600160a060020a0360043516610f95565b005b60038054829081106104fd57fe5b906000526020600020906009020160005b50805460018201546003830154600484015460058501546006860154600160a060020a039095169650929460020193919260ff80831693610100909304169188565b600060006000600060006000600060038981548110151561056d57fe5b906000526020600020906009020160005b50965086600301544210806105975750600487015460ff165b8061062c575086546001880154604051606060020a600160a060020a039093169283028152601481018290528a518b9190603482019060208401908083835b602083106105f55780518252601f1990920191602091820191016105d6565b5181516020939093036101000a6000190180199091169216919091179052604051920182900390912060068d015414159450505050505b156106375760006000fd5b600095506000945060009350600092505b6007870154831015610715576007870180548490811061066457fe5b906000526020600020900160005b5060055481546040805160006020918201819052825160e060020a6370a08231028152600160a060020a0361010090950485166004820152925195975092909316936370a082319360248084019491938390030190829087803b15156106d457fe5b6102c65a03f115156106e257fe5b50506040515183549781019790925060ff161590506107045793840193610709565b928301925b5b826001019250610648565b60015486116107245760006000fd5b838511156107fd5760048701805460ff191660019081179091558754908801546040518a51600160a060020a0390931692670de0b6b3a7640000909202918b9190819060208401908083838215610796575b80518252602083111561079657601f199092019160209182019101610776565b505050905090810190601f1680156107c25780820380516001836020036101000a031916815260200191505b5091505060006040518083038185876187965a03f19250505015156107e75760006000fd5b60048701805461ff00191661010017905561080b565b60048701805461ff00191690555b5b6004870154604080518b8152868803602082015280820189905261010090920460ff1615156060830152517f4bdc4ffee1d0e901f1c0270e9917651a82a81a109b5736b546a1b26668c55c0e916080908290030190a15b505050505050505050565b600554600160a060020a031681565b60045481565b60005433600160a060020a0390811691161461089f5760006000fd5b60058054600160a060020a031916600160a060020a0385161790558115156108c657600191505b600182905560028190556005546040805184815260208101849052600160a060020a0390921682820152517f68259880819f96f54b67d672fefc666565de06099c91b57a689a42073ba090c99181900360600190a15b5b505050565b60025481565b60015481565b600054600160a060020a031681565b6040805160006020918201819052825160e060020a6323b872dd028152600160a060020a038881166004830152308116602483015260448201889052935186948516936323b872dd936064808501949293928390030190829087803b15156109a157fe5b6102c65a03f115156109af57fe5b505060405151151590506109c35760006000fd5b7f0eeb71b8926d7ed8f47a2cedf6b9b204e2001344c7fa20c696c9f06ea7c413c6858585856040518085600160a060020a0316600160a060020a0316815260200184815260200183600160a060020a0316600160a060020a0316815260200180602001828103825283818151815260200191508051906020019080838360008314610a69575b805182526020831115610a6957601f199092019160209182019101610a49565b505050905090810190601f168015610a955780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a15b5050505050565b6005546040805160006020918201819052825160e060020a6370a08231028152600160a060020a03338116600483015293519194859416926370a082319260248084019382900301818787803b1515610b0257fe5b6102c65a03f11515610b1057fe5b50506040515115159050610b245760006000fd5b6003805490610b369060018301610fd1565b9150600382815481101515610b4757fe5b906000526020600020906009020160005b508054600160a060020a031916600160a060020a038816178155600181018690558451909150610b919060028301906020870190611003565b508585846040518084600160a060020a0316600160a060020a0316606060020a02815260140183815260200182805190602001908083835b60208310610be85780518252601f199092019160209182019101610bc9565b51815160209384036101000a60001901801990921691161790526040805192909401829003822060068a0155600254603c02420160038a015560048901805461ffff19169055600060058a0155898252600160a060020a038e16828201529281018c90526080606082018181528c51918301919091528b517f646fec02522b41e7125cfc859a64fd4f4cefd5dc3b6237ca0abe251ded1fa88198508a97508e96508d95508c94929350909160a0840191908501908083838215610cc6575b805182526020831115610cc657601f199092019160209182019101610ca6565b505050905090810190601f168015610cf25780820380516001836020036101000a031916815260200191505b509550505050505060405180910390a1600182016004555b5b50949350505050565b6005546040805160006020918201819052825160e060020a6370a08231028152600160a060020a03338116600483015293519194859416926370a082319260248084019382900301818787803b1515610d6957fe5b6102c65a03f11515610d7757fe5b50506040515115159050610d8b5760006000fd5b6003805485908110610d9957fe5b906000526020600020906009020160005b50600160a060020a033316600090815260088201602052604090205490915060ff16151560011415610ddc5760006000fd5b60078101805490610df09060018301611082565b9150604060405190810160405280841515815260200133600160a060020a03168152508160070183815481101515610e2457fe5b906000526020600020900160005b508151815460209384015160ff199182169215159290921761010060a860020a031916610100600160a060020a0393841602179092553316600081815260088501845260409081902080549093166001908117909355918501600585015581518781528615159381019390935282820152517f86abfce99b7dd908bec0169288797f85049ec73cbe046ed9de818fab3a497ae0916060908290030190a15b5b5092915050565b60006000600386815481101515610eeb57fe5b906000526020600020906009020160005b5090508484846040518084600160a060020a0316600160a060020a0316606060020a02815260140183815260200182805190602001908083835b60208310610f555780518252601f199092019160209182019101610f36565b5181516020939093036101000a60001901801990911692169190911790526040519201829003909120600687015414965050505050505b50949350505050565b60005433600160a060020a03908116911614610fb15760006000fd5b60008054600160a060020a031916600160a060020a0383161790555b5b50565b81548183558181151161091c5760090281600902836000526020600020918201910161091c91906110ac565b5b505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061104457805160ff1916838001178555611071565b82800160010185558215611071579182015b82811115611071578251825591602001919060010190611056565b5b5061107e929150611120565b5090565b81548183558181151161091c5760008381526020902061091c918101908301611141565b5b505050565b61111d91905b8082111561107e578054600160a060020a03191681556000600182018190556110de600283018261116c565b60006003830181905560048301805461ffff1916905560058301819055600683018190556111109060078401906111b4565b506009016110b2565b5090565b90565b61111d91905b8082111561107e5760008155600101611126565b5090565b90565b61111d91905b8082111561107e578054600160a860020a0319168155600101611147565b5090565b90565b50805460018160011615610100020316600290046000825580601f106111925750610fcd565b601f016020900490600052602060002090810190610fcd9190611120565b5b50565b5080546000825590600052602060002090810190610fcd9190611141565b5b505600a165627a7a72305820cf0547b35b5002e6b6ff1f3b5a7e26ed47653c44d29641afd3f095a527d2204d0029",
+  "networks": {
+    "1500547446497": {
+      "events": {
+        "0x646fec02522b41e7125cfc859a64fd4f4cefd5dc3b6237ca0abe251ded1fa881": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "proposalID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "description",
+              "type": "string"
+            }
+          ],
+          "name": "ProposalAdded",
+          "type": "event"
+        },
+        "0x86abfce99b7dd908bec0169288797f85049ec73cbe046ed9de818fab3a497ae0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "proposalID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "position",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "name": "voter",
+              "type": "address"
+            }
+          ],
+          "name": "Voted",
+          "type": "event"
+        },
+        "0x4bdc4ffee1d0e901f1c0270e9917651a82a81a109b5736b546a1b26668c55c0e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "proposalID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "result",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "quorum",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "active",
+              "type": "bool"
+            }
+          ],
+          "name": "ProposalTallied",
+          "type": "event"
+        },
+        "0x68259880819f96f54b67d672fefc666565de06099c91b57a689a42073ba090c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "minimumQuorum",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "debatingPeriodInMinutes",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "sharesTokenAddress",
+              "type": "address"
+            }
+          ],
+          "name": "ChangeOfRules",
+          "type": "event"
+        },
+        "0xa398b89ba344a0b23a0b9de53db298b2a1a868b396c1878b7e9dcbafecd49b13": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "receivedEther",
+          "type": "event"
+        },
+        "0x0eeb71b8926d7ed8f47a2cedf6b9b204e2001344c7fa20c696c9f06ea7c413c6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_from",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_value",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_token",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_extraData",
+              "type": "bytes"
+            }
+          ],
+          "name": "receivedTokens",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x0561d131483a5c962ff37d364a76b8a9baec3798",
+      "updated_at": 1500547800227
+    }
+  },
   "schema_version": "0.0.5",
-  "updated_at": 1500413725314
+  "updated_at": 1500547800227
 }

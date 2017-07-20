@@ -28,7 +28,7 @@ contract ERC20Interface {
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 }
 
-contract FixedSupplyToken is ERC20Interface {
+contract Token is ERC20Interface {
     string public constant symbol = "FIXED";
     string public constant name = "Example Fixed Supply Token";
     uint8 public constant decimals = 18;
@@ -52,7 +52,7 @@ contract FixedSupplyToken is ERC20Interface {
     }
 
     // Constructor
-    function FixedSupplyToken() {
+    function Token() {
         owner = msg.sender;
         balances[owner] = _totalSupply;
     }
