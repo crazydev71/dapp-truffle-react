@@ -1,137 +1,102 @@
-/*
-This file is part of the DAO.
+pragma solidity ^0.4.8;
 
-The DAO is free software: you can redistribute it and/or modify
-it under the terms of the GNU lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+contract ERC20Interface {
+    // Get the total token supply
+    function totalSupply() constant returns (uint256 totalSupply);
 
-The DAO is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU lesser General Public License for more details.
-
-You should have received a copy of the GNU lesser General Public License
-along with the DAO.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-
-/*
-Basic, standardized Token contract with no "premine". Defines the functions to
-check token balances, send tokens, send tokens on behalf of a 3rd party and the
-corresponding approval process. Tokens need to be created by a derived
-contract (e.g. TokenCreation.sol).
-
-Thank you ConsenSys, this contract originated from:
-https://github.com/ConsenSys/Tokens/blob/master/Token_Contracts/contracts/Standard_Token.sol
-Which is itself based on the Ethereum standardized contract APIs:
-https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs
-*/
-
-/// @title Standard Token Contract.
-
-pragma solidity ^0.4.6;
-
-contract Plutocracy {
-    function getOrModifyBlocked(address _account) returns (bool);
-}
-
-contract TokenInterface {
-    mapping (address => uint256) balances;
-    mapping (address => mapping (address => uint256)) allowed;
-
-    string public name;
-    string public symbol;
-    uint  public decimals;
-
-    /// Total amount of tokens
-    uint256 public totalSupply;
-
-    /// Governance contract
-    Plutocracy plutocracy;
-
-    /// @param _owner The address from which the balance will be retrieved
-    /// @return The balance
+    // Get the account balance of another account with address _owner
     function balanceOf(address _owner) constant returns (uint256 balance);
 
-    /// @notice Send `_amount` tokens to `_to` from `msg.sender`
-    /// @param _to The address of the recipient
-    /// @param _amount The amount of tokens to be transferred
-    /// @return Whether the transfer was successful or not
-    function transfer(address _to, uint256 _amount) returns (bool success);
+    // Send _value amount of tokens to address _to
+    function transfer(address _to, uint256 _value) returns (bool success);
 
-    /// @notice Send `_amount` tokens to `_to` from `_from` on the condition it
-    /// is approved by `_from`
-    /// @param _from The address of the origin of the transfer
-    /// @param _to The address of the recipient
-    /// @param _amount The amount of tokens to be transferred
-    /// @return Whether the transfer was successful or not
-    function transferFrom(address _from, address _to, uint256 _amount) returns (bool success);
+    // Send _value amount of tokens from address _from to address _to
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
 
-    /// @notice `msg.sender` approves `_spender` to spend `_amount` tokens on
-    /// its behalf
-    /// @param _spender The address of the account able to transfer the tokens
-    /// @param _amount The amount of tokens to be approved for transfer
-    /// @return Whether the approval was successful or not
-    function approve(address _spender, uint256 _amount) returns (bool success);
+    // Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+    // If this function is called again it overwrites the current allowance with _value.
+    // this function is required for some DEX functionality
+    function approve(address _spender, uint256 _value) returns (bool success);
 
-    /// @param _owner The address of the account owning tokens
-    /// @param _spender The address of the account able to transfer the tokens
-    /// @return Amount of remaining tokens of _owner that _spender is allowed
-    /// to spend
-    function allowance(
-        address _owner,
-        address _spender
-    ) constant returns (uint256 remaining);
+    // Returns the amount which _spender is still allowed to withdraw from _owner
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining);
 
-    event Transfer(address indexed _from, address indexed _to, uint256 _amount);
-    event Approval(
-        address indexed _owner,
-        address indexed _spender,
-        uint256 _amount
-    );
+    // Triggered when tokens are transferred.
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+
+    // Triggered whenever approve(address _spender, uint256 _value) is called.
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 }
 
+contract Token is ERC20Interface {
+    string public constant symbol = "FIXED";
+    string public constant name = "Example Fixed Supply Token";
+    uint8 public constant decimals = 18;
+    uint256 _totalSupply = 100000000;
 
-contract Token is TokenInterface {
+    // Owner of this contract
+    address public owner;
 
-    function Token (Plutocracy _plutocracy) {
-        plutocracy = _plutocracy;
+    // Balances for each account
+    mapping(address => uint256) balances;
+
+    // Owner of account approves the transfer of an amount to another account
+    mapping(address => mapping (address => uint256)) allowed;
+
+    // Functions with this modifier can only be executed by the owner
+    modifier onlyOwner() {
+        if (msg.sender != owner) {
+            throw;
+        }
+        _;
     }
 
+    // Constructor
+    function Token() {
+        owner = msg.sender;
+        balances[owner] = _totalSupply;
+    }
+
+    function totalSupply() constant returns (uint256 totalSupply) {
+        totalSupply = _totalSupply;
+    }
+
+    // What is the balance of a particular account?
     function balanceOf(address _owner) constant returns (uint256 balance) {
         return balances[_owner];
     }
 
+    // Transfer the balance from owner's account to another account
     function transfer(address _to, uint256 _amount) returns (bool success) {
         if (balances[msg.sender] >= _amount
             && _amount > 0
-            && plutocracy.getOrModifyBlocked(_to)) {
-
+            && balances[_to] + _amount > balances[_to]) {
             balances[msg.sender] -= _amount;
             balances[_to] += _amount;
             Transfer(msg.sender, _to, _amount);
             return true;
         } else {
-           return false;
+            return false;
         }
     }
 
+    // Send _value amount of tokens from address _from to address _to
+    // The transferFrom method is used for a withdraw workflow, allowing contracts to send
+    // tokens on your behalf, for example to "deposit" to a contract address and/or to charge
+    // fees in sub-currencies; the command should fail unless the _from account has
+    // deliberately authorized the sender of the message via some mechanism:
     function transferFrom(
         address _from,
         address _to,
         uint256 _amount
     ) returns (bool success) {
-
         if (balances[_from] >= _amount
             && allowed[_from][msg.sender] >= _amount
             && _amount > 0
-            && plutocracy.getOrModifyBlocked(_to)
-            && plutocracy.getOrModifyBlocked(_from)) {
-
-            balances[_to] += _amount;
+            && balances[_to] + _amount > balances[_to]) {
             balances[_from] -= _amount;
             allowed[_from][msg.sender] -= _amount;
+            balances[_to] += _amount;
             Transfer(_from, _to, _amount);
             return true;
         } else {
@@ -139,7 +104,9 @@ contract Token is TokenInterface {
         }
     }
 
-    function approve(address _spender, uint256 _amount) returns (bool success) {
+    // Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+    // If this function is called again it overwrites the current allowance with _value.
+    function approve(address _spender, uint256 _amount) onlyOwner returns (bool success) {
         allowed[msg.sender][_spender] = _amount;
         Approval(msg.sender, _spender, _amount);
         return true;
@@ -149,4 +116,3 @@ contract Token is TokenInterface {
         return allowed[_owner][_spender];
     }
 }
-
