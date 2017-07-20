@@ -8,7 +8,8 @@ import store from './store'
 import App from './App'
 // Header
 import Header from './components/Header'
-
+// DAO Container
+import TokenContainer from './containers/TokenContainer'
 
 ReactDOM.render(
   (<Provider store={store}>
@@ -17,7 +18,8 @@ ReactDOM.render(
           <main>
             <Header/>
             <div className="container">
-              <Route exact path="/" component={ App }/>
+              <Route exact path="/app" component={ App }/>
+              <Route path="/token" component={ TokenContainer }/>
             </div>
           </main>
       </div>
@@ -25,3 +27,5 @@ ReactDOM.render(
   </Provider>),
   document.getElementById('root')
 );
+
+//<Route exact path="/" component={ App }/>
