@@ -1,9 +1,8 @@
 import React from 'react'
-import { div, Well, label, p, Button } from 'react-bootstrap'
+import { div, Well, label, p } from 'react-bootstrap'
 
 // component
 export default function TokenComponent(props) {
-  console.log(props)
   return (
     <div>
       <div>Default TOKEN</div>
