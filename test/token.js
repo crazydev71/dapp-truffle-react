@@ -65,4 +65,15 @@ contract('Token', function(accounts) {
       assert.equal(result, true, "transfer aprrove not passed!");
     });
   });
+  it("should add record to allowance mapping table", function() {
+    return Token.deployed().then(function(instance) {
+      meta = instance;
+      return instance.approve(accounts[1], 100, {from: accounts[0]});
+    }).then(function(result) {
+      // assert.equal(result, true, "transfer aprrove not passed!");
+      return meta.allowance.call(accounts[0], accounts[1]);
+    }).then(function(remaining){
+      assert.equal(remaining, 100, "Secondary Account allowance is not recorded");
+    });
+  });
 });
