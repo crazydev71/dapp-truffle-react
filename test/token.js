@@ -15,4 +15,12 @@ contract('Token', function(accounts) {
       assert.equal(balance.valueOf(), 100000000, "100000000 wasn't in the first account");
     });
   });
+  it("should transfer 100 token from owner account to the second account", function() {
+    return Token.deployed().then(function(instance) {
+      return instance.transfer.call(accounts[1], 100);
+    }).then(function(result) {
+      // console.log("Here is the result.........", result)
+      assert.equal(result, true, "100 token wasn't transfereed from owner account to the second account");
+    });
+  });
 });
