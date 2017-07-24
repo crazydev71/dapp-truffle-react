@@ -69,3 +69,5 @@ typings/
 /.idea/
 .idea/workspace.xml
 /.idea/jsLibraryMappings.xml
+
+build/
