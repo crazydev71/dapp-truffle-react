@@ -44,4 +44,16 @@ contract('Token', function(accounts) {
       assert.equal(balance, 20, "Token Trnasfered successfully to the third account");
     });
   });
+  it("should not transfer Token without approvalt", function() {
+    return Token.deployed().then(function(instance) {
+      meta = instance;
+      return instance.balanceOf.call(accounts[3]);
+    }).then(function(){
+      return meta.transfer(accounts[1], 100, {from: accounts[0]});
+    }).then(function(){
+      return meta.transferFrom.call(accounts[1], accounts[3], 20, {from: accounts[3]});
+    }).then(function(result) {
+      assert.equal(result, false, "Token is Trnasfered to the third account without approval!!");
+    });
+  });
 });
