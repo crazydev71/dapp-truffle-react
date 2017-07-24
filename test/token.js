@@ -15,6 +15,14 @@ contract('Token', function(accounts) {
       assert.equal(balance.valueOf(), 100000000, "100000000 wasn't in the first account");
     });
   });
+  it("should call successfully transfer function", function() {
+    return Token.deployed().then(function(instance) {
+      meta = instance;
+      return instance.transfer.call(accounts[1], 100);
+    }).then(function(result) {
+        assert.equal(result, true, "transfer function wasn't called with success");
+    });
+  });
   it("should transfer Token correctly", function() {
     var meta;
 
@@ -48,6 +56,13 @@ contract('Token', function(accounts) {
 
       assert.equal(account_one_ending_balance, account_one_starting_balance - amount, "Amount wasn't correctly taken from the sender");
       assert.equal(account_two_ending_balance, account_two_starting_balance + amount, "Amount wasn't correctly sent to the receiver");
+    });
+  });
+  it("should approve Token Transfer from secondory account", function() {
+    return Token.deployed().then(function(instance) {
+      return instance.approve.call(accounts[1], 100);
+    }).then(function(result) {
+      assert.equal(result, true, "transfer aprrove not passed!");
     });
   });
 });
