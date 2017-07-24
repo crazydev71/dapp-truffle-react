@@ -69,11 +69,22 @@ contract('Token', function(accounts) {
     return Token.deployed().then(function(instance) {
       meta = instance;
       return instance.approve(accounts[1], 100, {from: accounts[0]});
-    }).then(function(result) {
-      // assert.equal(result, true, "transfer aprrove not passed!");
+    }).then(function() {
       return meta.allowance.call(accounts[0], accounts[1]);
     }).then(function(remaining){
       assert.equal(remaining, 100, "Secondary Account allowance is not recorded");
+    });
+  });
+  it("should transferfrom available for aproved accounts", function() {
+    return Token.deployed().then(function(instance) {
+      meta = instance;
+      return meta.transfer(accounts[1], 100, {from: accounts[0]});
+    }).then(function() {
+      return meta.approve(accounts[2], 100, {from: accounts[1]});
+    }).then(function(){
+      return meta.transferFrom.call(accounts[1], accounts[2], 20, {from: accounts[2]});
+    }).then(function(remaining){
+      assert.equal(remaining, true, "transferFrom function is not called successfully");
     });
   });
 });
