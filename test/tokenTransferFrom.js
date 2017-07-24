@@ -30,4 +30,18 @@ contract('Token', function(accounts) {
       assert.equal(remaining, true, "transferFrom function is not called successfully");
     });
   });
+  it("should transferfrom available for aproved accounts", function() {
+    return Token.deployed().then(function(instance) {
+      meta = instance;
+      return meta.transfer(accounts[1], 100, {from: accounts[0]});
+    }).then(function() {
+      return meta.approve(accounts[2], 100, {from: accounts[1]});
+    }).then(function(){
+      return meta.transferFrom(accounts[1], accounts[2], 20, {from: accounts[2]});
+    }).then(function(){
+      return meta.balanceOf.call(accounts[2]);
+    }).then(function(balance){
+      assert.equal(balance, 20, "Token Trnasfered successfully to the third account");
+    });
+  });
 });
