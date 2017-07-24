@@ -7,7 +7,20 @@ import Header from './components/Header'
 import TokenContainer from './containers/TokenContainer'
 import DaoContainer from './containers/DaoContainer'
 
-ReactDOM.render(
+import getWeb3 from './utils/getWeb3'
+import instantiateContracts from './utils/instantiateContracts'
+
+  // Get network provider and web3 instance.
+  // See utils/getWeb3 for more info.
+    getWeb3
+      .then(results => {
+        console.log('Inserting web3 results:',results)
+        return instantiateContracts()
+      })
+      .then(result => {
+        console.log('Successful contracts instantiation: ', result)
+
+        ReactDOM.render(
   (<Provider store={store}>
      <BrowserRouter>
       <div>
@@ -23,6 +36,12 @@ ReactDOM.render(
   </Provider>),
   document.getElementById('root')
 );
+      })
+      .catch(() => {
+        console.log('Error finding web3.')
+      })
+
+
 
 
 

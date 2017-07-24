@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import getWeb3 from '../utils/getWeb3'
-import instantiateContracts from '../utils/instantiateContracts'
 
 //copy state to component props
 const MapStateToProps = (state) => {
@@ -20,36 +18,16 @@ const MapDispatchToProps = (dispatch) => {
 
 //Token container component
 class DaoContainer extends Component {
-  constructor(props) {
-    super(props)
-
-  }
-
-  //runs when the component will mount for first time
-  componentWillMount() {
-  // Get network provider and web3 instance.
-  // See utils/getWeb3 for more info.
-    getWeb3
-      .then(results => {
-        console.log('Inserting web3 results:',results)
-        return instantiateContracts()
-      })
-      .then(result => {
-        console.log('Successful contracts instantiation: ', result)
-      })
-      .catch(() => {
-        console.log('Error finding web3.')
-      })
-  }
 
   render() {
+    console.log(this.props.state)
 
     return (
       <div>
       <div>DAO CONTAINER</div>
-      <div>PROVIDER: {}</div>
-      <div>CONTRACT1: {}</div>
-      <div>CONTRACT2: {}</div>
+      <div>PROVIDER: {this.props.state.web3.currentProvider.host}</div>
+      <div>DAO CONTRACT: {this.props.state.masterContracts.contracts[0].instance.address}</div>
+      <div>TOKEN CONTRACT: {this.props.state.masterContracts.contracts[1].instance.address}</div>
       </div>
     )
   }
