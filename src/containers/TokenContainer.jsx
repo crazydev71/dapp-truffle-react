@@ -71,9 +71,9 @@ class TokenContainer extends Component {
     .then(result => {
       console.log('transferFrom result',result)
       //set approval event listener again
-      this.setState({stop: true})
-      this.setState({transferEvent: this.state.token.Transfer()})
-      this.state.transferEvent.watch(this.transferListener)
+      // this.setState({stop: true})
+      // this.setState({transferEvent: this.state.token.Transfer()})
+      // this.state.transferEvent.watch(this.transferListener)
     })
   }
 
