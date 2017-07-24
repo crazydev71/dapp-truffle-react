@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
 import store from './store'
-import App from './App'
 import Header from './components/Header'
 import TokenContainer from './containers/TokenContainer'
+import DaoContainer from './containers/DaoContainer'
 
 ReactDOM.render(
   (<Provider store={store}>
@@ -14,7 +14,7 @@ ReactDOM.render(
           <main>
             <Header/>
             <div className="container">
-              <Route exact path="/app" component={ App }/>
+              <Route exact path="/" component={ DaoContainer }/>
               <Route path="/token" component={ TokenContainer }/>
             </div>
           </main>

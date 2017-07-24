@@ -8,7 +8,7 @@ import TokenComponent from '../components/TokenComponent'
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
-    web3: state.web3.web3
+    web3: state.web3
   }
 }
 

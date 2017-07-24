@@ -1,6 +1,7 @@
 import Web3 from 'web3'
 import store from '../store'
 import { loadWeb3 } from '../reducers/web3Thunks'
+import { loadUser } from '../reducers/userThunks.js'
 
 let getWeb3 = new Promise(function(resolve, reject) {
   // Wait for loading completion to avoid race conditions with web3 injection timing.
@@ -23,6 +24,19 @@ let getWeb3 = new Promise(function(resolve, reject) {
       web3 = new Web3(provider)
 
       store.dispatch(loadWeb3(web3))
+
+      //load a default USER TEMPORALLY
+      web3.eth.getAccounts((error, accounts) => {
+        const defaultUser = {
+          email: 'arnoldomora79@gmail.com',
+          password: '1234',
+          accountAddress: accounts[0]
+        }
+
+        store.dispatch(loadUser(defaultUser))
+
+      })
+      // END -- load a default USER TEMPORALLY -- END
 
       console.log('No web3 instance injected, using Local web3.');
 
