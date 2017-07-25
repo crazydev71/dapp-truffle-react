@@ -4,6 +4,7 @@ import store from '../store'
 import { loadContract } from '../reducers/masterContractsThunks'
 
 //create instances of all our master contracts to clon from them
+//create instances of all our master contracts to clon from them
 const instantiateContracts = () => {
   const web3 = store.getState().web3
   const contract = require('truffle-contract')
@@ -22,7 +23,7 @@ const instantiateContracts = () => {
         console.log('contract instance deployed', instance)
         store.dispatch(loadContract({
           name: contract.name,
-          instance: instance
+          instance: contract.instance
         }))
         return instance
       })
