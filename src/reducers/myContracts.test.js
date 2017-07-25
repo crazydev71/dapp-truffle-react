@@ -15,25 +15,20 @@ const web3 = new Web3(provider)
 const token = contract(TokenContract)
 token.setProvider(web3.currentProvider)
 
-web3.eth.getAccounts((error, accounts) => {
-  accountsList = accounts
-    token.new({
-        from: accountsList[0],
-        gas: 4712388,
-        gasPrice: 100000000000
-      })
-    .then(instance => {
-      describe('MyContracts Reducer dispatches actions correctly', () => {
-        it('it should load mycontract', () => {
-          dispatch(addMyContract({
-            name: 'token',
-            instance: instance
-          }))
-          expect(getState().myContracts.contracts[0].instance.address).to.equal(instance.address)
-        })
-      })
+token.deployed().then(instance => {
+
+  describe('MyContracts Reducer dispatches actions correctly', () => {
+    it('it should load a mycontract', () => {
+      dispatch(addMyContract({
+        name: 'token',
+        instance: instance
+      }))
+      expect(getState().myContracts.contracts[0].instance.address).to.equal(instance.address)
     })
-    .catch(error => {
-      console.error('error: ', error)
-    })
+  })
 })
+.catch(error => {
+  console.error('error: ', error)
+})
+
+

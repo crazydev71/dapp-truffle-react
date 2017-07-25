@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import DaoAdminComponent from '../components/DaoAdminInfo'
 import CreateDaoComponent from '../components/CreateDaoComponent'
-
+import { loadNewDaoContract } from '../reducers/myContractsThunks'
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
@@ -14,7 +14,9 @@ const MapStateToProps = (state) => {
 // include 'disptach' to component through 'connect' and dispatch thunk functions from the reducers
 const MapDispatchToProps = (dispatch) => {
   return {
-    /// thunk functions go here
+    newDaoContract: (sharesToVote, minutesForDebate) => {
+      dispatch(loadNewDaoContract(sharesToVote, minutesForDebate))
+    },
   }
 }
 
@@ -30,9 +32,8 @@ class DaoAdminContainer extends Component {
 
   //handle a new dao btn click
   handleNewDao () {
-    let accountsList
     console.log(`will create a new DAO with ${this.sharesToVote} shares to vote and ${this.minutesToDebate} minutes to debate`)
-
+    this.props.newDaoContract(this.sharesToVote, this.minutesToDebate)
   }
 
   // handle changes to any of the params

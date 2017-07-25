@@ -19,7 +19,7 @@ export default function Header() {
                     <NavItem>DAO Admin</NavItem>
                   </LinkContainer>
                     <LinkContainer to="/token">
-                    <NavItem>Token Example</NavItem>
+                    <NavItem>Old Example</NavItem>
                   </LinkContainer>
                 </Nav>
             </Navbar.Collapse>
