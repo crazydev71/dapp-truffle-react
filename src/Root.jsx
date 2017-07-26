@@ -5,10 +5,13 @@ import Header from './components/Header'
 // import TokenContainer from './containers/TokenContainer'
 // import DaoContainer from './containers/DaoContainer'
 
-
+import { initiateWeb3 } from './actions/blockchain'
 
 
 class Root extends Component {
+    componentWillMount(){
+        initiateWeb3()
+    }
     render(){
         return (
         <div>

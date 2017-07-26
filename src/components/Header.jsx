@@ -3,15 +3,15 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import { initiateWeb3 } from '../actions/blockchain'
+// import { initiateWeb3 } from '../actions/blockchain'
 
 // component
 
 class Header extends Component {
-    componentWillMount(){
-        console.log('test')
-        initiateWeb3()
-    }
+    // componentWillMount(){
+    //     console.log('test')
+    //     initiateWeb3()
+    // }
     render(){
         return (
         <Navbar inverse>
