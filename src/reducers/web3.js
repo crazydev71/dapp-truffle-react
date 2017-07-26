@@ -8,15 +8,13 @@ export const addWeb3 = web3 => ({
   type: ADDWEB3, web3
 })
 
-const initialState = {
-  web3: null
-}
+const initialState = null
 
 //reducer
 const reducer = (state=initialState, action) => {
   switch (action.type) {
     case ADDWEB3:
-      return Object.assign({}, state, {web3: action.web3})
+      return Object.assign({}, state, action.web3)
 
   }
 

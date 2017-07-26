@@ -4,7 +4,10 @@ import { combineReducers } from 'redux'
 //combine reducers in a single one
 const rootReducer = combineReducers({
   routerReducer,
-  web3: require('./web3').default
+  web3: require('./web3').default,
+  user: require('./user').default,
+  masterContracts: require('./masterContracts').default,
+  myContracts: require('./myContracts').default
 })
 
 export default rootReducer

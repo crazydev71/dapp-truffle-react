@@ -14,7 +14,7 @@ describe('Web3 Reducer dispatches actions correctly', () => {
 
   it('it should load web3', () => {
     dispatch(addWeb3(web3))
-    expect(getState().web3.web3.currentProvider.host).to.equal("http://localhost:8545")
+    expect(getState().web3.currentProvider.host).to.equal("http://localhost:8545")
   })
 
 })

@@ -8,7 +8,7 @@ import TokenComponent from '../components/TokenComponent'
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
-    //web3: state.web3.web3
+    web3: state.web3
   }
 }
 
@@ -71,9 +71,9 @@ class TokenContainer extends Component {
     .then(result => {
       console.log('transferFrom result',result)
       //set approval event listener again
-      this.setState({stop: true})
-      this.setState({transferEvent: this.state.token.Transfer()})
-      this.state.transferEvent.watch(this.transferListener)
+      // this.setState({stop: true})
+      // this.setState({transferEvent: this.state.token.Transfer()})
+      // this.state.transferEvent.watch(this.transferListener)
     })
   }
 
@@ -86,10 +86,8 @@ class TokenContainer extends Component {
 
   getWeb3
     .then(results => {
-      this.setState({
-        web3: results.web3
-      })
-      // Instantiate contract once web3 provided.
+      console.log('Inserting web3 results:',results)
+      this.setState({web3: this.props.web3})
       this.instantiateContract()
     })
     .catch(() => {
