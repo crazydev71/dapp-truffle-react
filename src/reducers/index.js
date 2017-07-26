@@ -7,7 +7,8 @@ const rootReducer = combineReducers({
   web3: require('./web3').default,
   user: require('./user').default,
   masterContracts: require('./masterContracts').default,
-  myContracts: require('./myContracts').default
+  myContracts: require('./myContracts').default,
+  blockchain: require('./blockchain').default,
 })
 
 export default rootReducer
