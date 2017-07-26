@@ -1,6 +1,7 @@
 import Web3 from 'web3'
 import store from '../index'
 import { loadUser } from '../reducers/userThunks.js'
+import instantiateContracts from '../utils/instantiateContracts'
 
 // export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE'
 
@@ -13,7 +14,7 @@ export function initiateWeb3() {
         const web3 = new Web3(provider)
         resolve(web3)
     }).catch(function(web3){
-            store.dispatch(connectWeb3(web3.eth))
+            store.dispatch(connectWeb3(web3.isConnected(), web3.currentProvider, web3.eth))
 
             web3.eth.getAccounts((error, accounts) => {
                 
@@ -26,13 +27,17 @@ export function initiateWeb3() {
                 store.dispatch(loadUser(defaultUser))
 
             })
+    }).then(function(){
+        return instantiateContracts()
     });
 }
 
-function connectWeb3(web3) {
+function connectWeb3(connected, currentProvider, web3_Ethereum) {
     return {
         type: WEB3_BLOCKCHAIN_CONNECT,
-        web3
+        connected,
+        currentProvider,
+        web3_Ethereum
     }
 }
 
