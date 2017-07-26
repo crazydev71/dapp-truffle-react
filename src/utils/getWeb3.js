@@ -1,5 +1,5 @@
 import Web3 from 'web3'
-import store from '../store'
+import store from '../index'
 import { loadWeb3 } from '../reducers/web3Thunks'
 import { loadUser } from '../reducers/userThunks.js'
 

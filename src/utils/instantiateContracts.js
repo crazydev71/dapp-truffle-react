@@ -1,6 +1,6 @@
 import DaoContract from '../../build/contracts/DAO.json'
 import TokenContract from '../../build/contracts/Token.json'
-import store from '../store'
+import store from '../index'
 import { loadContract } from '../reducers/masterContractsThunks'
 
 //create instances of all our master contracts to clon from them

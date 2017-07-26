@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import store from '../store'
+import store from '../index'
 import { addMyContract } from './myContracts'
 import Web3 from 'web3'
 import TokenContract from '../../build/contracts/Token.json'
