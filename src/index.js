@@ -13,7 +13,9 @@ import Header from './components/Header'
 // import getWeb3 from './utils/getWeb3'
 // import instantiateContracts from './utils/instantiateContracts'
 
-import { initiateWeb3 } from './actions/blockchain'
+// import { initiateWeb3 } from './actions/blockchain'
+
+// import { initialParams } from './actions/blockchain'
 
 const initialState = Object.assign(
      {},
@@ -21,9 +23,11 @@ const initialState = Object.assign(
 )
 
 const store = configureStore(initialState)
+
 export default store
 
-store.dispatch(initiateWeb3())
+// store.dispatch(initiateWeb3())
+// store.dispatch(initialParams())
 
 document.addEventListener('DOMContentLoaded', function () {
     //   getWeb3
