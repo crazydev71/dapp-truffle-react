@@ -8,7 +8,7 @@ import { initiateWeb3 } from '../actions/blockchain'
 // component
 
 class Header extends Component {
-    componentDidMount(){
+    componentWillMount(){
         console.log('test')
         initiateWeb3()
     }

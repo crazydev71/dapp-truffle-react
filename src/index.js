@@ -6,7 +6,8 @@ import {
   // Route
    } from 'react-router-dom'
 import configureStore from './store'
-import Header from './components/Header'
+import Root from './Root'
+// import Header from './components/Header'
 // import TokenContainer from './containers/TokenContainer'
 // import DaoAdminContainer from './containers/DaoAdminContainer'
 
@@ -41,15 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
      ReactDom.render(
          <Provider store={store}>
           <BrowserRouter>
-            <div>
-                <main>
-                  <Header/>
-                  <div className="container">
-                    {/*<Route exact path="/" component={ DaoAdminContainer }/>
-                    <Route path="/token" component={ TokenContainer }/>*/}
-                  </div>
-                </main>
-            </div>
+            <Root/>
           </BrowserRouter>
         </Provider>,
          document.getElementById('root')
