@@ -4,9 +4,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
 import store from './store'
 import Header from './components/Header'
-import TokenContainer from './containers/TokenContainer'
 import DaoAdminContainer from './containers/DaoAdminContainer'
-
+import SelectedContractContainer from './containers/SelectedContractContainer'
+import TokenContainer from './containers/TokenContainer'
 import getWeb3 from './utils/getWeb3'
 import instantiateContracts from './utils/instantiateContracts'
 
@@ -28,7 +28,8 @@ getWeb3
           <Header/>
           <div className="container">
             <Route exact path="/" component={ DaoAdminContainer }/>
-            <Route path="/token" component={ TokenContainer }/>
+            <Route path="/selected" component={ SelectedContractContainer }/>
+            <Route path="/old" component={ TokenContainer }/>
           </div>
         </main>
     </div>

@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import DaoAdminComponent from '../components/DaoAdminInfo'
 import CreateDaoComponent from '../components/CreateDaoComponent'
+import MyDaosAddressesComponent from '../components/MyDaosAddressesComponent'
 import { loadNewDaoContract } from '../reducers/myContractsThunks'
+import { selectedContract } from '../reducers/myContracts'
+
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
@@ -17,6 +20,9 @@ const MapDispatchToProps = (dispatch) => {
     newDaoContract: (sharesToVote, minutesForDebate) => {
       dispatch(loadNewDaoContract(sharesToVote, minutesForDebate))
     },
+    setSelected: (contract) => {
+      dispatch(selectedContract(contract))
+    }
   }
 }
 
@@ -26,6 +32,7 @@ class DaoAdminContainer extends Component {
     super(props)
     this.handleNewDao = this.handleNewDao.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleDaoDetails = this.handleDaoDetails.bind(this)
     this.sharesToVote = 1000
     this.minutesToDebate = 6000
   }
@@ -45,12 +52,21 @@ class DaoAdminContainer extends Component {
     }
   }
 
+  // handle transition to look for DAO in detail
+  handleDaoDetails(contract) {
+    //console.log('here', contract)
+    this.props.setSelected(contract)
+    this.props.history.push('/selected')
+  }
+
   render() {
+    const myDaos = this.props.state.myContracts.contracts
 
     return (
       <div>
         <DaoAdminComponent masterContracts={this.props.state.masterContracts.contracts} web3={this.props.state.web3} user={this.props.state.user}/>
         <CreateDaoComponent change={this.handleChange} newDao={this.handleNewDao}/>
+        <MyDaosAddressesComponent daos={myDaos} details={this.handleDaoDetails}/>
       </div>
     )
   }
