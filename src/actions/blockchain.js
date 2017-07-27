@@ -28,7 +28,7 @@ export function initiateWeb3() {
         const web3 = new Web3(provider)
         resolve(web3)
     }).catch(function(web3){
-            store.dispatch(connectWeb3(web3.isConnected(), web3.currentProvider, web3.eth))
+            store.dispatch(connectWeb3(web3.isConnected(), web3.currentProvider, web3.eth.accounts, web3.eth))
             web3.eth.getAccounts((error, accounts) => {
                 const defaultUser = {
                     email: 'arnoldomora79@gmail.com',
@@ -59,11 +59,12 @@ export function initiateWeb3() {
     });
 }
 
-function connectWeb3(connected, currentProvider, web3_Ethereum) {
+function connectWeb3(connected, currentProvider, accounts, web3_Ethereum) {
     return {
         type: WEB3_BLOCKCHAIN_CONNECT,
         connected,
         currentProvider,
+        accounts,
         web3_Ethereum
     }
 }

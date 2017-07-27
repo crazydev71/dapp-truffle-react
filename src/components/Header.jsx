@@ -15,12 +15,15 @@ export default function Header() {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                  <LinkContainer to="/">
-                    <NavItem>DAO Admin</NavItem>
-                  </LinkContainer>
+                    <LinkContainer to="/">
+                        <NavItem>DAO Admin</NavItem>
+                    </LinkContainer>
                     <LinkContainer to="/token">
-                    <NavItem>Old Example</NavItem>
-                  </LinkContainer>
+                        <NavItem>Old Example</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/transfer">
+                        <NavItem>Token Transfer Event</NavItem>
+                    </LinkContainer>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
