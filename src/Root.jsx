@@ -4,6 +4,7 @@ import Header from './components/Header'
 import TokenContainer from './containers/TokenContainer'
 import TransferContainer from './containers/TransferContainer'
 import DaoAdminContainer from './containers/DaoAdminContainer'
+import SelectedContractContainer from './containers/SelectedContractContainer'
 
 import { initiateWeb3 } from './actions/blockchain'
 
@@ -20,7 +21,8 @@ class Root extends Component {
                 <div className="container">
                     <Route path="/token" component={ TokenContainer }/>
                     <Route path="/transfer" component={ TransferContainer }/>    
-                    <Route exact path="/" component={ DaoAdminContainer }/>         
+                    <Route exact path="/" component={ DaoAdminContainer }/> 
+                    <Route path="/selected" component={ SelectedContractContainer }/>        
                 </div>
             </main>
         </div>
