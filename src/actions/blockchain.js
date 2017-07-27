@@ -7,6 +7,7 @@ import instantiateContracts from '../utils/instantiateContracts'
 import TokenContract from '../../build/contracts/Token.json'
 
 import { addContractServiceAction } from './token'
+import { loedingEnd } from './loader'
 
 const contract = require('truffle-contract')
 const token = contract(TokenContract)
@@ -52,6 +53,7 @@ export function initiateWeb3() {
             totalSupply: result.c[0],
             address: tokenAddress
         })
+        loedingEnd()
     }).then(function(){
         return instantiateContracts()
     });

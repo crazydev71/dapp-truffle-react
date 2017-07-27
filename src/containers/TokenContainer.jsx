@@ -19,7 +19,8 @@ const MapStateToProps = (state) => {
     // currentProvider: state.blockchain.currentProvider
     // token: state.token
     token: state.token.instance,
-    totalSupply: state.token.totalSupply
+    totalSupply: state.token.totalSupply,
+    loading: state.loader.chainLoading
     // address: state.token.instance
 
   }
@@ -158,41 +159,22 @@ class TokenContainer extends Component {
   //     })
   // }
 
-  // componentDidMount() {
-  //       const  instance  = this.props.token ? this.props.token.instance : null
-  //       console.log('supply................', instance)
-  // }
 
-  // componentWillReceiveProps(nextProps){
-  //   // const { name } = nextProps.token
-  //   console.log('NEXT.............', nextProps.token)
-  // }
 
-  // componentWillReceiveProps(nextProps){    
-  //   const contract = require('truffle-contract')
-  //   const token = contract(TokenContract)
-  //   console.log("Provider...........", nextProps.currentProvider)
-  //   addContractService("Token", token, nextProps.currentProvider)
-  // }
 
 
   render() {
-    // const  instance  = this.props.token ? this.props.token.instance : null
-    // console.log('supply................', instance)
-    // if (instance){
-    //   instance.totalSupply().then((result) => {
-    //     console.log('total supply: ', result.c[0])
-    //   })
-    // }
-    
-    // console.log('totalSupply................', totalSupply)
-    console.log("stoooooooooooore",store.getState().token)
-    return (
-      <TokenComponent 
-      totalSupply={this.props.totalSupply}
-      token={this.props.token}
-      />
-    )
+    console.log("Status....................", this.props.loading)
+    const { loading } = this.props
+    if (loading){
+      return (
+        <TokenComponent totalSupply={this.props.totalSupply} token={this.props.token}/>
+      )
+    } else {
+      return (
+        <p>Loading</p>
+      )
+    }
   }
 }
 
