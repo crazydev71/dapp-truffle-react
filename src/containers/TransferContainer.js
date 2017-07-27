@@ -171,26 +171,6 @@ class TransferContainer extends Component {
   //     })
   // }
 
-  // componentWillMount(){
-  //   console.log("tokenInstance//////////////////////////////////////////////", this.props.token)
-  // }
-
-  // componentWillReceiveProps(nextProps){
-  //   const { loading, token, accounts } = nextProps 
-  //   if (loading){
-  //     console.log("instance--------------------", token)
-  //     console.log("owner--------------------", accounts[0])
-  //     console.log("secondary--------------------", accounts[1])
-  //     token.transfer(accounts[1], 50000, {
-  //             from: accounts[0]
-  //           }).then(function(results){
-  //             console.log("RESULT_______________________", results)
-  //           })
-  //   }
-  // }
-
-
-
 
 
   render() {
