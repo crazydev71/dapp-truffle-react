@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+
 import store from '../store'
 import { addMyContract, selectedContract, updateInfo } from './myContracts'
 import Web3 from 'web3'

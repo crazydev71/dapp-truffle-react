@@ -6,9 +6,9 @@ export default function DaoAdminComponent(props) {
     return (
       <div>
         <div>GENERAL INFO</div>
-        <div>WEB3 Provider: {props.web3.currentProvider.host}</div>
-        <div>DAO Master Contract: {props.masterContracts[0].instance.address}</div>
-        <div>TOKEN Master Contract: {props.masterContracts[1].instance.address}</div>
+        <div>WEB3 Provider: {props.web3.host}</div>
+        <div>DAO Master Contract: {props.dao.address}</div>
+        <div>TOKEN Master Contract: {props.token.address}</div>
         <div>------------</div>
         <div>USER INFO</div>
         <div>Email: {props.user.email}</div>
