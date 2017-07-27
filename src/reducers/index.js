@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
   myContracts: require('./myContracts').default,
   blockchain: require('./blockchain').default,
   token: require('./token').default,
+  dao: require('./dao').default,
   loader: require('./loader').default,
 })
 

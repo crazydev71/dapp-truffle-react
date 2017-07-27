@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import Header from './components/Header'
-// import AppContainer from './containers/App'
 import TokenContainer from './containers/TokenContainer'
 import TransferContainer from './containers/TransferContainer'
-// import DaoAdminContainer from './containers/DaoAdminContainer'
+import DaoAdminContainer from './containers/DaoAdminContainer'
 
 import { initiateWeb3 } from './actions/blockchain'
 
@@ -21,14 +20,13 @@ class Root extends Component {
                 <div className="container">
                     <Route path="/token" component={ TokenContainer }/>
                     <Route path="/transfer" component={ TransferContainer }/>    
-                             
+                    <Route exact path="/" component={ DaoAdminContainer }/>         
                 </div>
             </main>
         </div>
         );
     }
 }
-//<Route path="/token" component={ TokenContainer }/>     
-//<Route exact path="/" component={ DaoAdminContainer }/>
+
 
 export default Root;

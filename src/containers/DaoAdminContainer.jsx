@@ -7,6 +7,10 @@ import { loadNewDaoContract } from '../reducers/myContractsThunks'
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
+    loading: state.loader.chainLoading,
+    provider: state.blockchain.currentProvider,
+    token: state.token.instance,
+    dao: state.dao.instance,
     state
   }
 }
@@ -46,15 +50,30 @@ class DaoAdminContainer extends Component {
   }
 
   render() {
+    const { loading } = this.props
+    // console.log("Here.................",loading)
+    // if(loading){
+    //   console.log("state....................", this.props.provider.host)
+    //   console.log('insatance........................', this.props.state.masterContracts.contracts)
 
+    // }
+    
+
+    if (loading){
     return (
       <div>
-        <DaoAdminComponent masterContracts={this.props.state.masterContracts.contracts} web3={this.props.state.web3} user={this.props.state.user}/>
+        <DaoAdminComponent dao={this.props.dao} token={this.props.token} web3={this.props.provider} user={this.props.state.user}/>
         <CreateDaoComponent change={this.handleChange} newDao={this.handleNewDao}/>
       </div>
     )
+    } else {
+      return (
+        <p>Loading</p>
+      )
+    }
   }
 }
-
+//        <DaoAdminComponent masterContracts={this.props.state.masterContracts.contracts} web3={this.props.state.web3} user={this.props.state.user}/>
+//        <CreateDaoComponent change={this.handleChange} newDao={this.handleNewDao}/>
 export default withRouter(connect(MapStateToProps, MapDispatchToProps)(DaoAdminContainer))
 

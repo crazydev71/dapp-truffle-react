@@ -1,7 +1,7 @@
 import store from '../index'
 
 
-export const ADD_TOKEN_CONTRACT = 'ADD_TOKEN_CONTRACT'
+export const ADD_DAO_CONTRACT = 'ADD_DAO_CONTRACT'
 
 
 // export function addContractService(name, contract, provider) {
@@ -27,12 +27,11 @@ export const ADD_TOKEN_CONTRACT = 'ADD_TOKEN_CONTRACT'
 //     });
 // }
 
-export function addContractServiceAction(contract){
+export function addDaoContractAction(contract){
     store.dispatch({
-        type: ADD_TOKEN_CONTRACT,
+        type: ADD_DAO_CONTRACT,
         name: contract.name,
         instance: contract.instance,
-        totalSupply: contract.totalSupply,
         address: contract.address
     })
 }

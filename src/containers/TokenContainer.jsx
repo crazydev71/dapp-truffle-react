@@ -26,7 +26,7 @@ class TokenContainer extends Component {
 
 
   render() {
-    console.log("Status....................", this.props.loading)
+
     const { loading } = this.props
     if (loading){
       return (

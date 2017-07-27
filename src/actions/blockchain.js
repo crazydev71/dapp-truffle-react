@@ -4,15 +4,16 @@ import store from '../index'
 import { loadUser } from '../reducers/userThunks.js'
 import instantiateContracts from '../utils/instantiateContracts'
 
-// import DaoContract from '../../build/contracts/DAO.json'
+import DaoContract from '../../build/contracts/DAO.json'
 import TokenContract from '../../build/contracts/Token.json'
 
 import { addContractServiceAction } from './token'
+import { addDaoContractAction } from './dao'
 import { loedingEnd } from './loader'
 
 const contract = require('truffle-contract')
 const token = contract(TokenContract)
-// const dao = contract(DaoContract)
+const dao = contract(DaoContract)
 
 
 export const WEB3_BLOCKCHAIN_CONNECT = 'WEB3_BLOCKCHAIN_CONNECT'
@@ -23,6 +24,8 @@ export function initiateWeb3() {
     let provider
     let tokenInstance
     let tokenAddress
+    let daoInstance
+    let daoAddress
     return new Promise(function(reject, resolve){
         const provider = new Web3.providers.HttpProvider('http://localhost:8545')
         const web3 = new Web3(provider)
@@ -51,6 +54,16 @@ export function initiateWeb3() {
             instance: tokenInstance,
             totalSupply: result.c[0],
             address: tokenAddress
+        })
+        dao.setProvider(provider)
+        return dao.deployed()
+    }).then(function(instance){
+        daoInstance = instance
+        daoAddress = instance.address
+        addDaoContractAction({
+            name: "DAO",
+            instance: daoInstance,
+            address: daoAddress
         })
         loedingEnd()
     }).then(function(){

@@ -1,15 +1,14 @@
-import { ADD_TOKEN_CONTRACT } from '../actions/token'
+import { ADD_DAO_CONTRACT } from '../actions/dao'
 
 
 // error handling, for displaying to user
 function addContractService(state = {} , action) {
 
     switch(action.type){
-        case ADD_TOKEN_CONTRACT:
+        case ADD_DAO_CONTRACT:
             return {
                 name: action.name,
                 instance: action.instance, 
-                totalSupply: action.totalSupply,
                 address: action.address
             }
         default:
