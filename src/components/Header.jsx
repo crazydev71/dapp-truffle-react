@@ -18,6 +18,10 @@ export default function Header() {
                     <LinkContainer to="/">
                         <NavItem>DAO Admin</NavItem>
                     </LinkContainer>
+
+                    <LinkContainer to="/selected">
+                        <NavItem>Selected DAO</NavItem>
+                    </LinkContainer>
                     <LinkContainer to="/token">
                         <NavItem>Old Example</NavItem>
                     </LinkContainer>
