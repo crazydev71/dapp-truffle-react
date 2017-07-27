@@ -1,27 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-// import getWeb3 from '../utils/getWeb3'
-// import TokenContract from '../../build/contracts/Token.json'
-import TokenComponent from '../components/TokenComponent'
 
 
-import store from '../index'
-import { addContractService } from '../actions/token'
-
-// import TokenContract from '../../build/contracts/Token.json'
-const TokenContract = require('../../build/contracts/Token.json')
 
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
-    // web3: state.blockchain.web3_Ethereum,
-    // currentProvider: state.blockchain.currentProvider
-    // token: state.token
     token: state.token.instance,
     accounts: state.blockchain.accounts,
     loading: state.loader.chainLoading
-    // address: state.token.instance
 
   }
 }
@@ -41,7 +29,7 @@ class TransferContainer extends Component {
   }
 
   transferToken(){
-    const { loading, token, accounts } = this.props 
+    const { token, accounts } = this.props 
     const ownerAccount = accounts[0]
     const secondaryAccount = accounts[1]
     token.transfer(secondaryAccount, 100, {
@@ -56,7 +44,7 @@ class TransferContainer extends Component {
 
 
   render() {
-    const { loading, token, accounts } = this.props 
+    const { loading } = this.props 
 
     return (
       <div>

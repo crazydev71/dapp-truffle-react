@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Web3 from 'web3'
 import store from '../index'
 import { loadUser } from '../reducers/userThunks.js'
@@ -19,7 +20,6 @@ export const WEB3_BLOCKCHAIN_CONNECT = 'WEB3_BLOCKCHAIN_CONNECT'
 
 
 export function initiateWeb3() {
-    let owner_account
     let provider
     let tokenInstance
     let tokenAddress
@@ -35,7 +35,6 @@ export function initiateWeb3() {
                     password: '1234',
                     accountAddress: accounts[0]
                 }
-                owner_account = accounts[0]
                 store.dispatch(loadUser(defaultUser))
             })
             provider = web3.currentProvider
