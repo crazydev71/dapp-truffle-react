@@ -16,9 +16,13 @@ const initialState = {
 const reducer = (state=initialState, action) => {
   switch (action.type) {
     case ADDCONTRACT:
+      // const arr = state.contracts.slice(0, state.length)
+      // arr.push(action.contract)
+      // return Object.assign({}, state, {contracts: arr})
       const arr = state.contracts.slice(0, state.length)
-      arr.push(action.contract)
+      arr.push({name: action.contract.name, instance: action.contract.instance})
       return Object.assign({}, state, {contracts: arr})
+
   }
 
   return state
