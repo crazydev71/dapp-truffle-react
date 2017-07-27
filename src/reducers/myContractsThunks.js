@@ -8,9 +8,9 @@ export const loadNewDaoContract = (sharesToVote, minutesForDebate) =>
   (disptach, getState) => {
     const masterToken = getState().masterContracts.contracts[1].instance
     const masterDao= getState().masterContracts.contracts[1].instance
-    const web3 = getState().web3
+    const web3 = getState().blockchain.web3_Ethereum
     let accountsList
-    web3.eth.getAccounts((error, accounts) => {
+    web3.getAccounts((error, accounts) => {
       accountsList = accounts
       masterToken.new({
         from: accountsList[0],
