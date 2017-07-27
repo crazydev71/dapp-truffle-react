@@ -51,14 +51,6 @@ class DaoAdminContainer extends Component {
 
   render() {
     const { loading } = this.props
-    // console.log("Here.................",loading)
-    // if(loading){
-    //   console.log("state....................", this.props.provider.host)
-    //   console.log('insatance........................', this.props.state.masterContracts.contracts)
-
-    // }
-    
-
     if (loading){
     return (
       <div>
@@ -73,7 +65,5 @@ class DaoAdminContainer extends Component {
     }
   }
 }
-//        <DaoAdminComponent masterContracts={this.props.state.masterContracts.contracts} web3={this.props.state.web3} user={this.props.state.user}/>
-//        <CreateDaoComponent change={this.handleChange} newDao={this.handleNewDao}/>
 export default withRouter(connect(MapStateToProps, MapDispatchToProps)(DaoAdminContainer))
 
