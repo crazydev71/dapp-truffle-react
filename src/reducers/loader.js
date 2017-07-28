@@ -1,4 +1,4 @@
-import { INITIAL_LOADING_END } from '../actions/loader'
+const INITIAL_LOADING_END = 'INITIAL_LOADING_END'
 
 export const initialloadingEnd = (status) => (
     {type: INITIAL_LOADING_END, status}
