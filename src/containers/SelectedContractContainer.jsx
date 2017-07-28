@@ -28,7 +28,10 @@ class SelectedContractContainer extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchSelected()
+    if(this.props.state.myContracts.selected){
+          this.props.fetchSelected()
+    }
+
   }
 
   handleRulesChange(){
@@ -41,24 +44,24 @@ class SelectedContractContainer extends Component {
     const info = this.props.state.myContracts.lastInfo
     return (
       <div>
+        {info !== null && dao !== null ?
         <Well bsSize="small">
           <label>DAO Address:</label>
           <p>{dao.instance.address}</p>
-          {info !== null ?
             <div>
-              <p>NAME: {info.name}</p>
-              <p>OWNER: {info.owner}</p>
-              <p>OWNER BALANCE: {info.ownerBalance}</p>
-              <p>TOTAL SUPPLY: {info.totalSupply}</p>
-              <p>DECIMALS: {info.decimals}</p>
-              <p>SYMBOL: {info.symbol}</p>
+              <label>Owner:</label>
+              <p>{info.owner}</p>
+              <p>Debating Period Minutes: {info.debatingPeriodInMinutes}</p>
+              <p>Minimum Quorum: {info.minimumQuorum}</p>
+              <p>Number of Proposals: {info.numProposals}</p>
+              <p>Shares Token Address: {info.sharesTokenAddress}</p>
             </div>
-            : ''}
-            <label>Transfer Events:</label>
-            <p>... something goes here when transfers comming</p>
-            <label>Approval Events:</label>
-            <p>... something goes here when approvals comming</p>
         </Well>
+        :
+        <Well bsSize="small">
+          <label>No selected DAO go to ^^^ DAO Admin to create one</label>
+        </Well>
+        }
       </div>
     )
   }
