@@ -2,6 +2,7 @@
 import Web3 from 'web3'
 import store from '../index'
 import { loadUser } from '../reducers/userThunks.js'
+import { loadingEnd } from '../reducers/loaderThunks'
 import instantiateContracts from '../utils/instantiateContracts'
 
 // import DaoContract from '../../build/contracts/DAO.json'
@@ -9,7 +10,7 @@ import instantiateContracts from '../utils/instantiateContracts'
 
 // import { addContractServiceAction } from './token'
 // import { addDaoContractAction } from './dao'
-import { loedingEnd } from './loader'
+// import { loedingEnd } from './loader'
 
 // const contract = require('truffle-contract')
 // const token = contract(TokenContract)
@@ -38,8 +39,7 @@ export function initiateWeb3() {
             })
             return instantiateContracts()
             }).then(function(){
-                
-                return loedingEnd()
+                return store.dispatch(loadingEnd({chainLoading: true}))
             });
 }
 
