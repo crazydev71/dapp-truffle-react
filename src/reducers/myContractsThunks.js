@@ -7,7 +7,7 @@ import { addMyContract, updateInfo } from './myContracts'
 export const loadNewDaoContract = (sharesToVote, minutesForDebate) =>
   (disptach, getState) => {
     const masterToken = getState().masterContracts.contracts[1].instance
-    const masterDao= getState().masterContracts.contracts[1].instance
+    const masterDao= getState().masterContracts.contracts[0].instance
     const web3 = getState().blockchain.web3_Ethereum
     let accountsList, tokenAddress
     web3.getAccounts((error, accounts) => {
@@ -45,43 +45,30 @@ export const loadNewDaoContract = (sharesToVote, minutesForDebate) =>
 export const fetchSelectedInfo = () =>
   (dispatch, getState) => {
     const selected = getState().myContracts.selected.instance
-    const user = getState().user.accountAddress
-    let owner, balance, totalSupply, name, symbol, decimals
 
-    selected.owner.call()
+    const promises = [
+      selected.owner.call(),
+      selected.debatingPeriodInMinutes.call(),
+      selected.minimumQuorum.call(),
+      selected.receivedTokens.call(),
+      selected.receivedEther.call(),
+      selected.sharesTokenAddress.call(),
+      selected.numProposals.call()
+    ]
+
+    Promise.all(promises)
     .then(res => {
-      owner = res
-      return selected.balanceOf.call(user)
-    })
-    .then(res => {
-      balance = res
-      return selected.totalSupply.call()
-    })
-    .then(res => {
-      totalSupply = res
-      return selected.name.call()
-    })
-    .then(res => {
-      name = res
-      return selected.symbol.call()
-    })
-    .then(res => {
-      symbol = res
-      return selected.decimals.call()
-    })
-    .then(res => {
-      decimals = res
+      console.log('fetch DAO info res: ',res)
       const info = {
-        owner: owner,
-        ownerBalance: balance.c[0],
-        totalSupply: totalSupply.c[0],
-        name: name,
-        symbol: symbol,
-        decimals: decimals.c[0]
+        owner: res[0],
+        debatingPeriodInMinutes: res[1].c[0],
+        minimumQuorum: res[2].c[0],
+        receivedTokens: res[3],
+        receivedEther: res[4],
+        sharesTokenAddress: res[5],
+        numProposals: res[6].c[0]
       }
+      console.log('fetch DAO info: ',info)
       dispatch(updateInfo(info))
-    })
-    .catch((error) => {
-      console.log(error)
     })
   }
