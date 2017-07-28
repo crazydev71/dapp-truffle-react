@@ -7,7 +7,8 @@ import { withRouter } from 'react-router-dom'
 //copy state to component props
 const MapStateToProps = (state) => {
   return {
-    token: state.token.instance,
+    // token: state.token.instance,
+    token: state.masterContracts.contracts[1],
     accounts: state.blockchain.accounts,
     loading: state.loader.chainLoading
 
@@ -32,7 +33,7 @@ class TransferContainer extends Component {
     const { token, accounts } = this.props 
     const ownerAccount = accounts[0]
     const secondaryAccount = accounts[1]
-    token.transfer(secondaryAccount, 100, {
+    token.deployed.transfer(secondaryAccount, 100, {
             from: ownerAccount
           }).then(function(results){
             console.log("RESULT_______________________", results.logs[0].event)

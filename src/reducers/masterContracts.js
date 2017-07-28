@@ -20,7 +20,7 @@ const reducer = (state=initialState, action) => {
       // arr.push(action.contract)
       // return Object.assign({}, state, {contracts: arr})
       const arr = state.contracts.slice(0, state.length)
-      arr.push({name: action.contract.name, instance: action.contract.instance})
+      arr.push({name: action.contract.name, instance: action.contract.instance, deployed: action.contract.deployed})
       return Object.assign({}, state, {contracts: arr})
 
   }

@@ -23,7 +23,8 @@ const instantiateContracts = () => {
         console.log('contract instance deployed', instance)
         store.dispatch(loadContract({
           name: contract.name,
-          instance: contract.instance
+          instance: contract.instance,
+          deployed: instance
         }))
         return instance
       })
