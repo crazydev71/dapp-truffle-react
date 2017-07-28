@@ -12,8 +12,8 @@ const MapStateToProps = (state) => {
   return {
     loading: state.loader.chainLoading,
     provider: state.blockchain.currentProvider,
-    token: state.token.instance,
-    dao: state.dao.instance,
+    token: state.masterContracts.contracts[1],
+    dao: state.masterContracts.contracts[1],
     state
   }
 }
@@ -70,7 +70,7 @@ class DaoAdminContainer extends Component {
     if (loading){
     return (
       <div>
-        <DaoAdminComponent dao={this.props.dao} token={this.props.token} web3={this.props.provider} user={this.props.state.user}/>
+        <DaoAdminComponent dao={this.props.dao.deployed} token={this.props.token.deployed} web3={this.props.provider} user={this.props.state.user}/>
         <CreateDaoComponent change={this.handleChange} newDao={this.handleNewDao}/>
         <MyDaosAddressesComponent daos={myDaos} details={this.handleDaoDetails}/>
       </div>
