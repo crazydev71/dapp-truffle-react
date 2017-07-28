@@ -4,16 +4,16 @@ import store from '../index'
 import { loadUser } from '../reducers/userThunks.js'
 import instantiateContracts from '../utils/instantiateContracts'
 
-import DaoContract from '../../build/contracts/DAO.json'
-import TokenContract from '../../build/contracts/Token.json'
+// import DaoContract from '../../build/contracts/DAO.json'
+// import TokenContract from '../../build/contracts/Token.json'
 
-import { addContractServiceAction } from './token'
-import { addDaoContractAction } from './dao'
+// import { addContractServiceAction } from './token'
+// import { addDaoContractAction } from './dao'
 import { loedingEnd } from './loader'
 
-const contract = require('truffle-contract')
-const token = contract(TokenContract)
-const dao = contract(DaoContract)
+// const contract = require('truffle-contract')
+// const token = contract(TokenContract)
+// const dao = contract(DaoContract)
 
 
 export const WEB3_BLOCKCHAIN_CONNECT = 'WEB3_BLOCKCHAIN_CONNECT'
@@ -22,10 +22,6 @@ export const WEB3_BLOCKCHAIN_CONNECT = 'WEB3_BLOCKCHAIN_CONNECT'
 
 export function initiateWeb3() {
     let provider
-    let tokenInstance
-    let tokenAddress
-    let daoInstance
-    let daoAddress
     return new Promise(function(reject, resolve){
         const provider = new Web3.providers.HttpProvider('http://localhost:8545')
         const web3 = new Web3(provider)
@@ -40,37 +36,11 @@ export function initiateWeb3() {
                 }
                 store.dispatch(loadUser(defaultUser))
             })
-            provider = web3.currentProvider
-            token.setProvider(provider)
-            return token.deployed()
-    }).then(function(instance){
-        tokenInstance = instance
-        tokenAddress = instance.address
-        return instance.totalSupply()
-    }).then(function(result){
-        console.log('total supply: ', result.c[0])
-        addContractServiceAction({
-            name: "Token",
-            instance: tokenInstance,
-            totalSupply: result.c[0],
-            address: tokenAddress
-        })
-        dao.setProvider(provider)
-        return dao.deployed()
-    }).then(function(instance){
-        daoInstance = instance
-        daoAddress = instance.address
-        addDaoContractAction({
-            name: "DAO",
-            instance: daoInstance,
-            address: daoAddress
-        })
-        return instantiateContracts()
-        // loedingEnd()
-    }).then(function(){
-        
-        return loedingEnd()
-    });
+            return instantiateContracts()
+            }).then(function(){
+                
+                return loedingEnd()
+            });
 }
 
 function connectWeb3(connected, currentProvider, accounts, web3_Ethereum) {
