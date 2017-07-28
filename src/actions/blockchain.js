@@ -65,9 +65,11 @@ export function initiateWeb3() {
             instance: daoInstance,
             address: daoAddress
         })
-        loedingEnd()
-    }).then(function(){
         return instantiateContracts()
+        // loedingEnd()
+    }).then(function(){
+        
+        return loedingEnd()
     });
 }
 
