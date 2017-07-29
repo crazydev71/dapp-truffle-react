@@ -6,7 +6,8 @@ import TransferContainer from './containers/TransferContainer'
 import DaoAdminContainer from './containers/DaoAdminContainer'
 import SelectedContractContainer from './containers/SelectedContractContainer'
 
-import { initiateWeb3 } from './actions/blockchain'
+// import { initiateWeb3 } from './actions/blockchain'
+import { initiateWeb3 } from './utils/loadData'
 
 
 class Root extends Component {

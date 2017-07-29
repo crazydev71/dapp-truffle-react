@@ -1,8 +1,18 @@
-import { WEB3_BLOCKCHAIN_CONNECT } from '../actions/blockchain'
+// import { WEB3_BLOCKCHAIN_CONNECT } from '../actions/blockchain'
+
+const WEB3_BLOCKCHAIN_CONNECT = 'WEB3_BLOCKCHAIN_CONNECT'
+
+export const web3Connect = (params) => ({
+    type: WEB3_BLOCKCHAIN_CONNECT,
+    connected: params.connected,
+    currentProvider: params.currentProvider,
+    accounts: params.accounts,
+    web3_Ethereum: params.web3_Ethereum
+})
 
 
 // error handling, for displaying to user
-function connectBlockchain(state = {} , action) {
+const reducer = (state = {} , action) => {
 
     switch(action.type){
         case WEB3_BLOCKCHAIN_CONNECT:
@@ -18,4 +28,4 @@ function connectBlockchain(state = {} , action) {
 }
 
 
-export default connectBlockchain;
+export default reducer;
