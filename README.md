@@ -38,3 +38,14 @@
     ```javascript
     npm run build
     ```
+### Server side
+
+Need to have Postgresql installed in you machine
+
+run:
+
+`createdb dao`
+
+`npm run start-server`
+
+runs in port 5000 in dev environment
