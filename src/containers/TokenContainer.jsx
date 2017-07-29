@@ -28,16 +28,15 @@ class TokenContainer extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps){
-    if (this.props.token){
-      let _this = this
-      nextProps.token.deployed.totalSupply().then(function(result){
-          _this.setState({
-            totalSupply: result.c[0]
-          })
-      })
-    }
-    }
+
+  componentDidMount(){
+    let _this = this
+    this.props.token.deployed.totalSupply().then(function(result){
+        _this.setState({
+          totalSupply: result.c[0]
+        })
+    })
+  }
 
   
 
