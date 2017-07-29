@@ -6,7 +6,7 @@ export const web3Connect = (params) => ({
     type: WEB3_BLOCKCHAIN_CONNECT,
     connected: params.connected,
     currentProvider: params.currentProvider,
-    accounts: params.currentProvider,
+    accounts: params.accounts,
     web3_Ethereum: params.web3_Ethereum
 })
 

@@ -31,15 +31,15 @@ class TokenContainer extends Component {
   componentWillReceiveProps(nextProps){
     if (this.props.token){
       let _this = this
-      nextProps.token.instance.deployed().then(instance => {
-        return instance.totalSupply()}).then(function(result){
+      nextProps.token.deployed.totalSupply().then(function(result){
           _this.setState({
             totalSupply: result.c[0]
           })
-        })
+      })
+    }
     }
 
-  }
+  
 
   render() {
 

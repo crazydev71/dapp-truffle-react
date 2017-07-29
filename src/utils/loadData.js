@@ -7,10 +7,6 @@ import instantiateContracts from '../utils/instantiateContracts'
 import { connectWeb3 } from '../reducers/blockchainThunks'
 
 
-// export const WEB3_BLOCKCHAIN_CONNECT = 'WEB3_BLOCKCHAIN_CONNECT'
-
-
-
 export function initiateWeb3() {
     let provider
     return new Promise(function(reject, resolve){
@@ -36,12 +32,3 @@ export function initiateWeb3() {
                 return store.dispatch(loadingEnd({chainLoading: true}))
             });
 }
-
-// function connectWeb3({connected, currentProvider, accounts, web3_Ethereum}) {
-//     return {
-//         connected,
-//         currentProvider,
-//         accounts,
-//         web3_Ethereum
-//     }
-// }
