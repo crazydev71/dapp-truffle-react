@@ -35,7 +35,7 @@ bower_components
 #build/Release
 
 # Build directories
-build/
+
 build_webpack/
 
 # Dependency directories
@@ -69,5 +69,3 @@ typings/
 /.idea/
 .idea/workspace.xml
 /.idea/jsLibraryMappings.xml
-
-build/
