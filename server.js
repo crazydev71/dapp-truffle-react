@@ -1,6 +1,11 @@
 const http = require('http');
 const express = require('express');
+import bodyParser from 'body-parser';
+import users from './routes/users';
+
 const app = express();
+app.use(bodyParser.json());
+
 const isDevMode = process.env.NODE_ENV === 'development';
 const request = require('request')
 
@@ -25,6 +30,8 @@ app.use(require('morgan')('short'));
 app.get(/.*/, function root(req, res) {
   res.sendFile(__dirname + '/src/index.html');
 });
+
+app.use('/api/users', users);
 
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000, function onListen() {
