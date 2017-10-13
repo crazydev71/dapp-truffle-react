@@ -100,5 +100,32 @@ router.route('/approve').post( (req, res) => {
 });
 
 
+router.route('/transfer-from').post( (req, res) => {
+
+  // Data post example:
+  // {
+  //   "sharesAddress": "0x27074fbb5f2740b029d88b8b3188b8c5e3d696fb",
+  //   "_from" : "0x7ecf34ed29ede66ecc1068b398102aa57ccbd317",
+  //   "_to" : "0x7f4a0b1a66c153664d541ce25f08d000182adfd8",
+  //   "_amount" : "1",
+  //   "account" : "0xcfd980c4115825d6270d840cab900e15a65e3436"
+  // }
+
+  const data = req.body;
+
+  token.at(data.sharesAddress).transferFrom(
+    data._from,
+    data._to,
+    data._amount,
+    {
+      from: data.account,
+      gas: 4388712,
+      gasPrice: 100000000000
+    }).then( (result) => {
+      // console.log("event", result);
+      return res.json( { event: result.logs[0].event } ); } );
+
+});
+
 
 export default router;
