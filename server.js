@@ -2,6 +2,7 @@ const http = require('http');
 const express = require('express');
 import bodyParser from 'body-parser';
 import users from './routes/users';
+import token from './routes/token';
 
 const app = express();
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use(require('morgan')('short'));
 // app.get('/test', (req, res) => res.json( { username: "tim" } ) );
 
 app.use('/api/users', users);
+app.use('/api/token', token);
 
 app.get(/.*/, function root(req, res) {
   res.sendFile(__dirname + '/src/index.html');
