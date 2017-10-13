@@ -3,6 +3,7 @@ const express = require('express');
 import bodyParser from 'body-parser';
 import users from './routes/users';
 import token from './routes/token';
+import dao from './routes/dao';
 
 const app = express();
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use(require('morgan')('short'));
 
 app.use('/api/users', users);
 app.use('/api/token', token);
+app.use('/api/dao', dao);
 
 app.get(/.*/, function root(req, res) {
   res.sendFile(__dirname + '/src/index.html');
