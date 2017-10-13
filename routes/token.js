@@ -52,4 +52,39 @@ router.route('/create-token').post( (req, res) => {
 });
 
 
+router.route('/transfer-token').post( (req, res) => {
+
+  // Data post example:
+  // {
+  //   "sharesAddress": "0x3683da91c8e7d1e022c8f18a3813db550eece8e0",
+  //   "_to" : "0xead02d42efe27ff850e242892577336de3d20cf9",
+  //   "_amount" : "1",
+  //   "account" : "0x7ecf34ed29ede66ecc1068b398102aa57ccbd317"
+  // }
+
+  const data = req.body;
+
+  const token = contract(TokenContract);
+  token.setProvider(web3.currentProvider);
+
+  //Bug Fix web3 and Truffle contract
+  if (typeof token.currentProvider.sendAsync !== "function") {
+    token.currentProvider.sendAsync = function() {
+      return token.currentProvider.send.apply(
+        token.currentProvider, arguments
+      );
+    };
+  }
+
+  token.at(data.sharesAddress).transfer(
+    data._to,
+    data._amount,
+    {
+      from: data.account,
+      gas: 4388712,
+      gasPrice: 100000000000
+    }).then( (result) => { return res.json( { event: result.logs[0].event } ); } );
+
+});
+
 export default router;
