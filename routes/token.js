@@ -7,7 +7,17 @@ import TokenContract from '../build/contracts/Token.json';
 const router = new Router();
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
+const token = contract(TokenContract);
+token.setProvider(web3.currentProvider);
 
+//Bug Fix web3 and Truffle contract
+if (typeof token.currentProvider.sendAsync !== "function") {
+  token.currentProvider.sendAsync = function() {
+    return token.currentProvider.send.apply(
+      token.currentProvider, arguments
+    );
+  };
+}
 
 router.route('/create-token').post( (req, res) => {
 
@@ -21,18 +31,6 @@ router.route('/create-token').post( (req, res) => {
   // }
 
   const data = req.body;
-
-  const token = contract(TokenContract);
-  token.setProvider(web3.currentProvider);
-
-  //Bug Fix web3 and Truffle contract
-  if (typeof token.currentProvider.sendAsync !== "function") {
-    token.currentProvider.sendAsync = function() {
-      return token.currentProvider.send.apply(
-        token.currentProvider, arguments
-      );
-    };
-  }
 
   token.new(
     data.totalSupply,
@@ -64,17 +62,6 @@ router.route('/transfer-token').post( (req, res) => {
 
   const data = req.body;
 
-  const token = contract(TokenContract);
-  token.setProvider(web3.currentProvider);
-
-  //Bug Fix web3 and Truffle contract
-  if (typeof token.currentProvider.sendAsync !== "function") {
-    token.currentProvider.sendAsync = function() {
-      return token.currentProvider.send.apply(
-        token.currentProvider, arguments
-      );
-    };
-  }
 
   token.at(data.sharesAddress).transfer(
     data._to,

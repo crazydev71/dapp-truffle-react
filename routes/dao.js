@@ -7,7 +7,17 @@ import DaoContract from '../build/contracts/Association.json';
 const router = new Router();
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
+const dao = contract(DaoContract);
+dao.setProvider(web3.currentProvider);
 
+//Bug Fix web3 and Truffle contract
+if (typeof dao.currentProvider.sendAsync !== "function") {
+  dao.currentProvider.sendAsync = function() {
+    return dao.currentProvider.send.apply(
+      dao.currentProvider, arguments
+    );
+  };
+}
 
 router.route('/create-dao').post( (req, res) => {
 
@@ -20,18 +30,6 @@ router.route('/create-dao').post( (req, res) => {
   // }
 
   const data = req.body;
-
-  const dao = contract(DaoContract);
-  dao.setProvider(web3.currentProvider);
-
-  //Bug Fix web3 and Truffle contract
-  if (typeof dao.currentProvider.sendAsync !== "function") {
-    dao.currentProvider.sendAsync = function() {
-      return dao.currentProvider.send.apply(
-        dao.currentProvider, arguments
-      );
-    };
-  }
 
   dao.new(
     data.sharesAddress,
