@@ -5,7 +5,6 @@ import users from './routes/users';
 
 const app = express();
 app.use(bodyParser.json());
-
 const isDevMode = process.env.NODE_ENV === 'development';
 const request = require('request')
 
@@ -27,11 +26,14 @@ app.use(require('morgan')('short'));
   app.use(express.static(__dirname + '/'));
 })();
 
+// app.get('/test', (req, res) => res.json( { username: "tim" } ) );
+
+app.use('/api/users', users);
+
 app.get(/.*/, function root(req, res) {
   res.sendFile(__dirname + '/src/index.html');
 });
 
-app.use('/api/users', users);
 
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000, function onListen() {
