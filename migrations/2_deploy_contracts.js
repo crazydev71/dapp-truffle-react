@@ -1,11 +1,11 @@
-var Token = artifacts.require("./Token.sol");
-var DAO = artifacts.require("./DAO.sol");
-
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
+var Ownable = artifacts.require("./zeppelin/ownership/Ownable.sol");
+var Killable = artifacts.require("./zeppelin/lifecycle/Killable.sol");
+var Authentication = artifacts.require("./Authentication.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Token).then(function(){
-    return deployer.deploy(DAO, Token.address, 5000001, 60);
-  });
-  deployer.deploy(SimpleStorage);
-}
+  deployer.deploy(Ownable);
+  deployer.link(Ownable, Killable);
+  deployer.deploy(Killable);
+  deployer.link(Killable, Authentication);
+  deployer.deploy(Authentication);
+};
