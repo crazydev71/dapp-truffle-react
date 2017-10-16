@@ -127,5 +127,89 @@ router.route('/transfer-from').post( (req, res) => {
 
 });
 
+router.route('/events').post( (req, res) => {
+
+  // Data post example:
+  // {
+  //   "sharesAddress": "0x27074fbb5f2740b029d88b8b3188b8c5e3d696fb",
+  //   "fromBlock" : "0",
+  // }
+
+  const data = req.body;
+
+  // token.at(data.sharesAddress).allEvents({
+  //   fromBlock: data.fromBlock,
+  //   toBlock: 'latest'
+  // }, function(error, log){
+  //   if (log.length > 0) {
+  //     resolve(log);
+  //     return res.json( { logs: log } );
+  //   }
+  // });
+
+  // web3.eth.filter({
+  //   address: data.sharesAddress,
+  //   from: "1",
+  //   to: 'latest'
+  // }).get(function (err, result) {
+  //   // callback code here
+  //   console.log(err);
+  //   // console.log(result);
+  //   // return res.json( { logs: log } );
+  // })
+
+  // var filter = web3.eth.filter({
+  //   address: data.sharesAddress,
+  //   from: "1",
+  //   to: 'latest'
+  // });
+
+  // filter.watch(function (error, log) {
+  //   console.log(log); //  {"address":"0x0000000000000000000000000000000000000000", "data":"0x0000000000000000000000000000000000000000000000000000000000000000", ...}
+  // });
+  //
+  // // get all past logs again.
+  // var myResults = filter.get(function(error, logs){ console.log('LOGS', logs) });
+
+
+  // stops and uninstalls the filter
+  // filter.stopWatching();
+
+  // var gntAddress="0xa74476443119A942dE498590Fe1f2454d7D4aC0d";
+  // var filter=web3.eth.filter({}, {fromBlock: 1, toBlock: 6, address: data.sharesAddress, topics: []});
+  // filter.get(function(error, log) {
+  //   console.log(JSON.stringify(log));
+  // });
+  // filter.stopWatching();
+
+  // var subscription = web3.eth.subscribe('logs', {
+      // address: data.sharesAddress,
+      // from: "0",
+      // to: 'latest'
+  // }, function(error, result){
+  //     if (!error)
+  //         console.log(log);
+  // })
+  // .on("data", function(log){
+  // })
+  // .on("changed", function(log){
+  // });
+  //
+  // // unsubscribes the subscription
+  // subscription.unsubscribe(function(error, success){
+  //     if(success)
+  //         console.log('Successfully unsubscribed!');
+  // });
+
+  web3.eth.getPastLogs({
+    address: data.sharesAddress,
+    from: "0",
+    to: 'latest'
+    // topics: ["0x033456732123ffff2342342dd12342434324234234fd234fd23fd4f23d4234"]
+  })
+  .then(console.log);
+
+});
+
 
 export default router;
