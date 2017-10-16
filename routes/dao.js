@@ -70,9 +70,13 @@ router.route('/create-proposal').post( (req, res) => {
       from: data.account,
       gas: 4388712,
       gasPrice: 100000000000
-    }).then( (result) => { return res.json( { event: result.logs[0].event } ); } );
-
-
+    }).then( (result) => {
+      return res.json( {
+        transactionHash: result.logs[0].transactionHash,
+        event: result.logs[0].event,
+        proposalID: result.logs[0].args.proposalID.toString()
+      } );
+    } );
 
 });
 
