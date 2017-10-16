@@ -47,5 +47,33 @@ router.route('/create-dao').post( (req, res) => {
   });
 });
 
+router.route('/create-proposal').post( (req, res) => {
+
+  // Data post example:
+  // {
+  // "daoAddress": "0x13ead7c43d734e99df5a30ad05ff10f202e3a251",
+  // "account" : "0x7ecf34ed29ede66ecc1068b398102aa57ccbd317",
+  // "beneficiary": "0xead02d42efe27ff850e242892577336de3d20cf9",
+  // "weiAmount": "1000000000000000000",
+  // "jobDescription": "Complete Tasks",
+  // "transactionBytecode": ""
+  // }
+
+  const data = req.body;
+
+  dao.at(data.daoAddress).newProposal(
+    data.beneficiary,
+    data.weiAmount,
+    data.jobDescription,
+    data.transactionBytecode,
+    {
+      from: data.account,
+      gas: 4388712,
+      gasPrice: 100000000000
+    }).then( (result) => { return res.json( { event: result.logs[0].event } ); } );
+
+
+
+});
 
 export default router;
