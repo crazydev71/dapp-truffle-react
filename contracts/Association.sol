@@ -49,7 +49,7 @@ contract Association is owned, tokenRecipient {
     Token public sharesTokenAddress;
 
     event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
-    event Voted(uint proposalID, bool position, address voter);
+    event Voted(uint proposalID, bool position, address voter, uint voteID);
     event ProposalTallied(uint proposalID, uint result, uint quorum, bool active);
     event ChangeOfRules(uint newMinimumQuorum, uint newDebatingPeriodInMinutes, address newSharesTokenAddress);
 
@@ -205,7 +205,7 @@ contract Association is owned, tokenRecipient {
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID +1;
-        Voted(proposalNumber,  supportsProposal, msg.sender);
+        Voted(proposalNumber,  supportsProposal, msg.sender, voteID);
         return voteID;
     }
 

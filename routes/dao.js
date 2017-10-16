@@ -80,4 +80,36 @@ router.route('/create-proposal').post( (req, res) => {
 
 });
 
+router.route('/vote-proposal').post( (req, res) => {
+
+  // Data post example:
+  // {
+  // "daoAddress": "0x19a0e5e3f7fcf63541a0b10cf1c635dde65429ce",
+  // "account" : "0x7ecf34ed29ede66ecc1068b398102aa57ccbd317",
+  // "proposalNumber": "5",
+  // "supportsProposal" : true
+  // }
+
+  const data = req.body;
+
+  dao.at(data.daoAddress).vote(
+    data.proposalNumber,
+    data.supportsProposal,
+    {
+      from: data.account,
+      gas: 4388712,
+      gasPrice: 100000000000
+    }).then( (result) => {
+      console.log("Here res.......", result.logs[0].args);
+      return res.json( {
+        transactionHash: result.logs[0].transactionHash,
+        event: result.logs[0].event,
+        proposalID: result.logs[0].args.proposalID.toString(),
+        voteID: result.logs[0].args.voteID.toString(),
+        position : result.logs[0].args.position
+      } );
+    } ).catch( error => res.json({error : error.message}));
+
+});
+
 export default router;

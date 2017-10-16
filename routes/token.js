@@ -1,7 +1,7 @@
 // import express from 'express';
 import Router from 'express';
 import Web3 from 'web3';
-import contract from 'truffle-contract'; //TODO Change to ES6 Syntax
+import contract from 'truffle-contract';
 import TokenContract from '../build/contracts/Token.json';
 
 const router = new Router();
@@ -39,7 +39,7 @@ router.route('/create-token').post( (req, res) => {
     data.decimals,
     {
       from: data.account,
-      gas: 4388712,
+      gas: 4712388,
       gasPrice: 100000000000
     }).then( instance => {
     console.log('Token contract deployed....');
@@ -68,7 +68,7 @@ router.route('/transfer-token').post( (req, res) => {
     data._amount,
     {
       from: data.account,
-      gas: 4388712,
+      gas: 4712388,
       gasPrice: 100000000000
     }).then( (result) => { return res.json( { event: result.logs[0].event } ); } );
 
@@ -91,7 +91,7 @@ router.route('/approve').post( (req, res) => {
     data._amount,
     {
       from: data.account,
-      gas: 4388712,
+      gas: 4712388,
       gasPrice: 100000000000
     }).then( (result) => {
       // console.log("event", result);
@@ -119,7 +119,7 @@ router.route('/transfer-from').post( (req, res) => {
     data._amount,
     {
       from: data.account,
-      gas: 4388712,
+      gas: 4712388,
       gasPrice: 100000000000
     }).then( (result) => {
       // console.log("event", result);
